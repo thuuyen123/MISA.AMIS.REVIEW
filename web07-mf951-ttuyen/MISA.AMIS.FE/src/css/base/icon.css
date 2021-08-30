@@ -1,0 +1,240 @@
+.sprite {
+    background: url("../../assets/img/Sprites.svg") no-repeat;
+    cursor: pointer;
+}
+
+.icon-menu {
+    background-position: -425px -88px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-bell {
+    background-position: -841px -517px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-money-draw {
+    background-position: -75px -1628px;
+    width: 24px;
+    height: 24px;
+}
+
+/* 3 gach tối*/
+
+.icon-toggle {
+    background-position: -843px -30px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-toggle-light {
+    background-position: -312px -32px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-refresh {
+    background-position: -425px -201px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-search {
+    background-position: -992px -360px;
+    width: 16px;
+    height: 16px;
+}
+
+.icon-export {
+    background-position: -705px -200px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-test {
+    background-position: -512px -408px;
+    width: 16px;
+    height: 16px;
+}
+
+.icon-calendar {
+    background-position: -128px -312px;
+    width: 16px;
+    height: 16px;
+}
+
+.icon-chevron-down {
+    background-position: -81px -361px;
+    width: 14px;
+    height: 14px;
+    transform: rotate(90deg);
+}
+
+.icon-arrow-down {
+    background-position: -564px -365px;
+    width: 8px;
+    height: 5px;
+}
+
+.icon-arrow-down-blue {
+    background-position: -900px -365px;
+    width: 8px;
+    height: 5px;
+}
+
+.icon-chevron-down-small {
+    background-position: -467px -414px;
+    width: 10px;
+    height: 5px;
+}
+
+.icon-x {
+    background-position: -144px -144px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-question-mark {
+    background-position: -89px -144px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-pie-chart {
+    background-position: -31px -1628px;
+    width: 24px;
+    height: 24px;
+}
+
+/* .icon-money-bag {
+    background-position: -162px -1660px;
+    width: 24px;    
+    height: 24px;
+} */
+
+.icon-bank {
+    background-position: -119px -1630px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-bag {
+    background-position: -161px -1629px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-cart {
+    background-position: -204px -1628px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-document {
+    background-position: -250px -1629px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-warehouse {
+    background-position: -292px -1630px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-tools {
+    background-position: -337px -1631px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-assets {
+    background-position: -380px -1631px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-government {
+    background-position: -424px -1631px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-price-tag {
+    background-position: -468px -1630px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-notebook {
+    background-position: -511px -1629px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-dollar-coin {
+    background-position: -378px -1660px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-avatar {
+    background-position: -353px -894px;
+    width: 30px;
+    height: 30px;
+}
+
+.icon-bar-chart {
+    background-position: -547px -1631px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-graph {
+    background-position: -204px -1663px;
+    width: 24px;
+    height: 24px;
+}
+
+/*icon hướng lên trên*/
+
+.icon-rotate-up {
+    transition: 0.7s;
+    -webkit-transition: 0.7s;
+    -moz-transition: 0.7s;
+    -o-transition: 0.7s;
+}
+
+/*icon hướng xuống dưới*/
+
+.icon-rotate-down {
+    transition: 0.7s;
+    -webkit-transition: 0.7s;
+    -moz-transition: 0.7s;
+    -o-transition: 0.7s;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.icon-notify {
+    background-position: -752px -462px;
+    width: 36px;
+    height: 36px;
+}
+
+.icon-warning {
+    background-position: -598px -463px;
+    width: 36px;
+    height: 36px;
+}
+
+.icon-confirm {
+    background-position: -598px -463px;
+    width: 36px;
+    height: 36px;
+}

@@ -1,0 +1,32 @@
+#contextMenu{
+    /* display: none; */
+    position: absolute;
+    top: 10px;
+}
+
+.context-menu{
+    width: 120px;
+    height: 90px;
+    background-color: #fff;
+    border-radius: 2px;
+    border: 1px solid #babec5;
+    z-index: 1;
+    padding: 2px 0;
+}
+
+.context-menu-title{
+    color: #000;
+    width: 100%;
+    font-size: 13px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all .2s ease;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.context-menu-title:hover{
+    background-color: #e8e9ec;
+    color: #08bf1e;
+}

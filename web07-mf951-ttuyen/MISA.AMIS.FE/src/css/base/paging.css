@@ -1,0 +1,60 @@
+ .layout-paging{
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding-right: 24px;
+     padding-left: 16px;
+     height: 46px;
+     background-color: #fff;
+     z-index: 6;
+ }
+ .paging-filter{
+     display: flex;
+     justify-content: center;
+ }
+ .layout-paging .paging-container{
+     display: flex;
+     justify-content: flex-end;
+ }
+.layout-paging .paging-container .paging-btn {
+    height: 24px;
+    border-radius: 2px;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    font-family: NotoSans-Regular;
+
+}
+
+.layout-paging .paging-container .paging-num {
+    height: 24px;
+    width: 24px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    background-color: transparent;
+    padding-right: .5rem!important;
+    padding-left: .5rem!important;
+    font-family: NotoSans-Regular;
+
+}
+
+.layout-paging .paging-container .paging-num:hover,
+.layout-paging .paging-container .paging-num:active {
+    background-color: white;
+}
+
+.layout-paging  .paging-num.pageSelected {
+    border: 1px solid #e0e0e0;
+    font-weight: 700;
+}
+
+ input{
+     border: 1px solid;
+ }
+ .mr-1{
+     margin-right: 1rem!important;
+ }
+ .ml-1{
+    margin-left: 1rem!important;
+ }

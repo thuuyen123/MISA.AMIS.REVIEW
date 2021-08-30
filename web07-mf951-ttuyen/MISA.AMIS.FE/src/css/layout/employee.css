@@ -1,0 +1,70 @@
+.layout-body {
+    overflow: scroll;
+    position: absolute;
+    bottom: 0;
+    right: 16px;
+    left: 16px;
+    top: 76px;
+    padding: 0px 0px 46px 0;
+    scroll-behavior: smooth;
+    background-color: white;
+}
+
+.layout-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
+    padding-top: 24px;
+    padding-bottom: 16px;
+}
+
+.layout-header .title-layout {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.layout-body .layout-filter {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 72px;
+    padding-right: 16px;
+    width: 100%;
+    background-color: white;
+    position: sticky;
+    left: 0;
+}
+
+.layout-filter .field-input {
+    width: 240px;
+}
+
+.layout-filter .field-input input::placeholder {
+    font-style: italic;
+}
+
+.layout-filter .m-btn-refresh, .layout-filter .m-btn-export {
+    cursor: pointer;
+    margin: 0px 0px 0px 16px;
+    box-sizing: border-box;
+}
+
+.m-btn-refresh:hover, .m-btn-refresh:active {
+    background-position: -1097px -88px;
+}
+
+.m-btn-export:hover, .m-btn-export:active {
+    background-position: -705px -256px;
+}
+
+.layout-footer {
+    position: absolute;
+    bottom: 7px;
+    right: 0;
+    width: 100%;
+    min-height: 40px;
+    padding-left: 16px;
+    padding-right: 50px;
+}

@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: none;
+    text-decoration: none;
+    -webkit-text-decoration-line: none;
+    text-decoration-line: none;
+    text-decoration-thickness: initial;
+    -webkit-text-decoration-style: initial;
+    text-decoration-style: solid;
+    -webkit-text-decoration-color: initial;
+    text-decoration-color: initial;
+
+}
+
+body {
+    font-family: NotoSans-Regular;
+    font-size: 13px;
+    overflow: hidden;
+}
+
+a{
+    color: #000;
+}
+@font-face {
+    font-family: Notosans-Regular;
+    src: url("../assets/fonts/notosans-regular.woff2");
+}
+@font-face {
+    font-family: Notosans-Semibold;
+    src: url("../assets/fonts/notosans-semibold.woff2") format("opentype");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Notosans-Bold;
+    src: url("../assets/fonts/notosans-bold.woff2") format("opentype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: Notosans-Italic;
+    src: url("../assets/fonts/notosans-italic.woff2") format("opentype");
+    font-style: italic;
+}
+.text-overflow-ellipsis{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.text-align-center{
+    text-align: center;
+}
+.text-align-right{
+    text-align: right;
+}
+
+@import "../css/common/common.css";
+@import "../css/base/icon.css";

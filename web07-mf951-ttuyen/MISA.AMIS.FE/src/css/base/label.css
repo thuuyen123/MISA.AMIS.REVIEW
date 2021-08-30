@@ -1,0 +1,14 @@
+.label-field-input {
+    display: block;
+}
+.label-field-input > label {
+    font-size: 12px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+    flex-basis: 100%;
+
+}
+.input-border-red{
+    border-color: #f65454 !important;
+}

@@ -1,0 +1,172 @@
+.model {
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 10;
+}
+
+.dialog-detail {
+    width: 100%;
+}
+
+.dialog-content {
+    z-index: 100;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 900px;
+    height: 600px;
+}
+
+.dialog-content .dialog-header {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px 60px 20px 30px;
+    top: 0;
+}
+
+.dialog-content .dialog-header span {
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.dialog-content .dialog-header .components-checkbox {
+    padding: 0 19.5px;
+    display: flex;
+    align-items: center;
+}
+
+.dialog-content .dialog-header label {
+    white-space: nowrap;
+    padding-left: 10px;
+    font-size: 13px;
+}
+
+.dialog-content .dialog-content-form {
+    display: flex !important;
+    flex-wrap: wrap;
+    padding: 0px 32px 0px 32px;
+    justify-content: space-between;
+}
+
+.dialog-header-options {
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px;
+    right: 0px;
+    position: absolute;
+    top: 0px;
+    align-items: center;
+    gap: 6px;
+}
+
+.dialog-content-form .form-block-1 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-basis: calc(50% - 13px);
+    justify-content: space-between;
+    align-content: flex-start;
+    box-sizing: border-box;
+}
+
+.dialog-detail .dialog-content-form .label-field-input {
+    margin-bottom: 12px;
+    flex-basis: 100%;
+}
+
+.dialog-content-form .form-block-1>.label-field-input:nth-child(1) {
+    flex-basis: 35%;
+}
+
+.dialog-content-form .form-block-1>.label-field-input:nth-child(2) {
+    flex: 1;
+    margin-left: 6px;
+}
+
+.field-input:focus-within {
+    border: 1px solid #2ca01c;
+    box-shadow: none !important;
+}
+
+.dialog-content-form .form-block-2 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-basis: calc(50% - 13px);
+    justify-content: space-between;
+    align-content: flex-start;
+    box-sizing: border-box;
+}
+
+.dialog-content-form .form-block-2>.label-field-input:nth-child(1) {
+    flex-basis: 40%;
+}
+
+.dialog-content-form .form-block-2>.label-field-input:nth-child(2) {
+    flex: 1;
+    margin-left: 16px;
+}
+
+.form-block-2 .field-gender {
+    display: flex;
+    align-items: center;
+    height: 32px;
+}
+
+.form-block-2 .field-gender label {
+    padding-right: 20px;
+    padding-left: 6px;
+}
+
+.dialog-content-form .form-block-2>.label-field-input:nth-child(3) {
+    flex: 1;
+}
+
+.dialog-content-form .form-block-2>.label-field-input:nth-child(4) {
+    flex-basis: 60%;
+    margin-left: 6px;
+}
+
+.dialog-content-form .form-block-3 {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    flex-basis: 100%;
+    gap: 6px;
+}
+
+.dialog-content-form .form-block-3>.label-field-input:first-child {
+    flex-basis: 100% !important;
+}
+
+.dialog-content-form .form-block-3>.label-field-input:nth-child(n+1) {
+    flex-basis: 25%;
+}
+
+.dialog-content .dialog-footer {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: space-between;
+    padding: 0px 30px 20px 30px;
+}
+
+.dialog-content .dialog-footer>div {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.divide{
+    width: calc(100% - 64px);
+    border-top: 1px solid #e0e0e0;
+    margin: 32px 0 20px 0;
+    position: relative;
+    left: 32px;
+}
