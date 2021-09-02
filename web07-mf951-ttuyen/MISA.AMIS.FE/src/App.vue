@@ -1,6 +1,6 @@
 <template>
   <div class="amis-container">
-    <TheMenu />
+    <TheMenu/>
     <div class="content-container">
       <TheHeader />
       <div class="content-area">
@@ -22,6 +22,7 @@ export default {
     TheHeader,
     TheMenu,
   },
+
 };
 </script>
 <style scoped>

@@ -12,22 +12,22 @@
     font-weight: 700;
 }
 
-.m-btn-primary{
+.m-btn[type="primary"]{
     background-color: #2ca01c;
     border: none;
     padding: 8px 20px;
     color: #fff;
 }
 
-.m-btn-primary:hover{
+.m-btn[type="primary"]:hover{
     background-color: #35bf22;
 }
 
-.m-btn-primary:active {
+.m-btn[type="primary"]:active {
     background-color: #248b15;
 }
 
-.m-btn-secondary{
+.m-btn[type="secondary"]{
     background-color: white;
     border: 1px solid #8d9096;
     color: #111;
@@ -35,11 +35,11 @@
     padding-right: 20px;
 }
 
-.m-btn-secondary:hover {
+.m-btn[type="secondary"]:hover {
     background-color: #d2d3d6;
 }
 
-.m-btn-secondary:active {
+.m-btn[type="secondary"]:active {
     background-color: #bbbcbc;
 }
 

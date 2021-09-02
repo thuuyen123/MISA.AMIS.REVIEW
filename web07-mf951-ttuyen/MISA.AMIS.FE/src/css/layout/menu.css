@@ -75,7 +75,7 @@
     opacity: 1;
 }
 
-.menu-container .menu-content a:focus, .menu-container .menu-content a.active {
+.menu-container .menu-content a:focus, .menu-container .menu-content a:active {
     background-color: rgba(235, 237, 240, 0.2);
     color: #ffffff;
     font-weight: bold;

@@ -7,7 +7,7 @@
         isIcon="false"
         id="btnAdd"
         @btn-click="btnShowDialog"
-        subClass="m-btn-primary"
+        type="primary"
       >
         Thêm mới nhân viên
       </BaseButton>
@@ -29,17 +29,29 @@
       </div>
       <BaseTable
         :tableData="table"
-        @clone-btn-click="btnCloneOnClick"
-        @delete-btn-click="btnDeleteOnClick"
+        @edit-btn-click="btnShowDialog"
+        @show-option-click="showOptionOnClick"
       />
     </div>
+
     <div class="layout-footer">
       <BasePaging />
     </div>
     <div class="dialog">
-      <EmployeeDetail :status="recordStatus" @btnCloseDialog="btnCloseDialog" />
+      <EmployeeDetail
+        :hideLoader="isHideLoader"
+        :status="recordStatus"
+        @btnCloseDialog="btnCloseDialog"
+        @reloadData="reloadData"
+      />
     </div>
     <BaseLoader :hideLoader="isHideLoader" />
+    <BaseContextMenu
+      v-on-clickaway="away"
+      :isShow="isShowContextMenu"
+      @btnClone="btnShowDialogClone"
+      @btnDelete="btnShowDelete"
+    />
   </div>
 </template>
 <script>
@@ -50,7 +62,14 @@ import BaseTable from "../../components/base/BaseTable.vue";
 import BasePaging from "../../components/base/BasePaging.vue";
 import EmployeeDetail from "../employee/EmployeeDetail.vue";
 import BaseLoader from "../../components/base/BaseLoader.vue";
+import BaseContextMenu from "../../components/base/BaseContentMenu.vue";
+import { directive as onClickaway } from "vue-clickaway";
+
+import { eventBus } from "../../main.js";
 export default {
+  directives: {
+    onClickaway: onClickaway,
+  },
   components: {
     BaseButton,
     BaseInput,
@@ -58,6 +77,7 @@ export default {
     BasePaging,
     EmployeeDetail,
     BaseLoader,
+    BaseContextMenu,
   },
   data() {
     return {
@@ -69,12 +89,16 @@ export default {
       pageIndex: 1,
       pageSize: 10,
       totalPages: 1,
-      //Lấy trạng thái hiện tại để thêm/sửa 
-      recordStatus:{
+      isShowContextMenu: false,
+      selectedId: String,
+      //Lấy trạng thái hiện tại để thêm/sửa
+      recordStatus: {
         isHide: true,
         formMode: "add",
         data: [],
       },
+
+      cloneData: [],
       myUrl: "https://localhost:44331/api/v1/",
       table: {
         columns: [
@@ -92,7 +116,7 @@ export default {
           },
           {
             id: "GenderHead",
-            style: "min-width: 125px",
+            style: "min-width: 100px",
             fieldname: "GenderName",
             title: "Giới tính",
           },
@@ -105,51 +129,32 @@ export default {
             position: "text-align-center",
           },
           {
+            id: "IdentityNumberHead",
+            style: "min-width: 180px",
+            fieldname: "IdentityNumber",
+            title: "Số CMND",
+          },
+          {
             id: "EmployeePositionHead",
             style: "min-width: 150px",
             fieldname: "EmployeePosition",
-            title: "Vị trí",
+            title: "Chức danh",
           },
           {
             id: "DepartmentNameHead",
             style: "min-width: 150px",
             fieldname: "DepartmentName",
-            title: "Phòng ban",
+            title: "Tên đơn vị",
           },
           {
-            id: "AddressHead",
-            style: "min-width: 200px; max-width: 200px;",
-            fieldname: "Address",
-            title: "Địa chỉ",
-            position: "text-overflow-ellipsis",
-          },
-          {
-            id: "MobilePhoneNumberHead",
-            style: "min-width: 160px",
-            fieldname: "MobilePhoneNumber",
-            title: "Điện thoại di động",
-          },
-          {
-            id: "LandlineNumberHead",
-            style: "min-width: 160px",
-            fieldname: "LandlineNumber",
-            title: "Điện thoại cố định",
-          },
-          {
-            id: "EmailHead",
-            style: "min-width: 250px",
-            fieldname: "Email",
-            title: "Email",
-          },
-          {
-            id: "BacnkAccountNumberHead",
+            id: "BankAccountNumberHead",
             style: "min-width: 180px",
             fieldname: "BankAccountNumber",
             title: "Tài khoản ngân hàng",
           },
           {
             id: "BankNameHead",
-            style: "min-width: 160px",
+            style: "min-width: 140px",
             fieldname: "BankName",
             title: "Ngân hàng",
           },
@@ -159,23 +164,85 @@ export default {
             fieldname: "BankBranchName",
             title: "Chi nhánh ngân hàng",
           },
-          {
-            id: "CreatedDateHead",
-            style: "min-width: 120px",
-            fieldname: "CreatedDate",
-            formattype: "ddmmyyyy",
-            title: "Ngày tạo",
-            position: "text-align-center",
-          },
         ],
         data: [],
       },
+
+      top: 0,
     };
   },
   created() {
     this.loadData();
+    this.loadAllData();
+    eventBus.$emit("activeMenu");
   },
   methods: {
+    away: function () {
+      this.isShowContextMenu = false;
+    },
+
+    btnShowDelete() {
+      console.log("1");
+    },
+    /**
+     *Hiển thị contextMenu
+     */
+    showOptionOnClick(isShowMenu, data = []) {
+      (this.isShowContextMenu = isShowMenu), (this.cloneData = data);
+      console.log(this.cloneData);
+    },
+
+    /**
+     * Đóng context menu
+     */
+    closeContextMenu() {
+      this.isShowContextMenu = false;
+    },
+    /**
+     * Hiển thị form dialog thông qua context menu
+     */
+    async btnShowDialogClone(isHide, formMode = "add") {
+      this.recordStatus = {
+        isHide: isHide,
+        formMode: formMode,
+        data: this.cloneData,
+      };
+      console.log(this.recordStatus);
+      this.closeContextMenu();
+    },
+    /**
+     * Hiển thị form dialog
+     */
+    async btnShowDialog(isHide, formMode = "add", data = []) {
+      console.log(isHide);
+      this.recordStatus = {
+        isHide: isHide,
+        formMode: formMode,
+        data: data,
+      };
+    },
+
+    async loadAllData() {
+      let me = this;
+      me.reloading();
+      try {
+        await axios
+          .get(me.myUrl + "Employees")
+          .then((res) => {
+            if (res.status != 204) {
+              me.employees = res.data.Data;
+            } else {
+              me.employees = [];
+            }
+          })
+          .catch((res) => {
+            console.log(res);
+          });
+        me.closeReloading();
+      } catch (error) {
+        console.log(error);
+      }
+    },
     /**
      * Hàm Ẩn/hiện Loader
      * Uyen 12/8/2021
@@ -195,17 +262,15 @@ export default {
     },
 
     /**
-     * Hàm hiển thị form
-     */
-    btnShowDialog() {
-      this.recordStatus.isHide = false;
-    },
-
-    /**
      * Hàm đóng form
      */
     btnCloseDialog() {
-      this.recordStatus.isHide = true;
+      this.loadData();
+      this.recordStatus={
+        isHide : true,
+        // formMode : "add",
+        // data: [],
+      }
     },
 
     /**
@@ -231,41 +296,42 @@ export default {
      */
     async loadData() {
       let me = this;
+      me.pageSize = 50;
       me.reloading();
-      await axios
-        .get(
-          me.myUrl +
-            "Employees/Filter?keySearch=" +
-            me.keySearch +
-            "&pageSize=" +
-            me.pageSize +
-            "&pageIndex=" +
-            me.pageIndex
-        )
-        .then((res) => {
-          if (res.status != 204) {
-            // me.employees = res.data.Data;
-            me.table.data = res.data.Data;
-            me.totalPages = res.data.TotalPage;
-            me.totalRecord = res.data.TotalRecord;
-          } else {
-            // me.employees = [];
-            me.table.data = [];
-            me.totalRecord = 0;
-            me.totalPages = 1;
-            // this.showMessage(type.WARNING, [message.DATA_EMPTY]);
-          }
-          console.log("table");
-          console.log(me.table.data);
-          console.log(me.employees);
-
-          // me.isChecked = new Array(me.employees.length).fill(false);
-        })
-        .catch((res) => {
-          console.log(res);
-          // this.showMessage(type.WARNING, [message.EXCEPTION_MSG]);
-        });
-      me.closeReloading();
+      try {
+        await axios
+          .get(
+            me.myUrl +
+              "Employees/Filter?keySearch=" +
+              me.keySearch +
+              "&pageSize=" +
+              me.pageSize +
+              "&pageIndex=" +
+              me.pageIndex
+          )
+          .then((res) => {
+            if (res.status != 204) {
+              // me.employees = res.data.Data;
+              me.table.data = res.data.Data;
+              me.totalPages = res.data.TotalPage;
+              me.totalRecord = res.data.TotalRecord;
+            } else {
+              // me.employees = [];
+              me.table.data = [];
+              me.totalRecord = 0;
+              me.totalPages = 1;
+              // this.showMessage(type.WARNING, [message.DATA_EMPTY]);
+            }
+            // me.isChecked = new Array(me.employees.length).fill(false);
+          })
+          .catch((res) => {
+            console.log(res);
+            // this.showMessage(type.WARNING, [message.EXCEPTION_MSG]);
+          });
+        me.closeReloading();
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     /**
@@ -303,6 +369,14 @@ export default {
           // this.showMessage(type.WARNING, [message.EXCEPTION_MSG]);
         });
       me.closeReloading();
+    },
+    reloadData(){
+      this.loadData();
+      // this.recordStatus={
+      //   isHide : true,
+      //   formMode : "add",
+      //   data: [],
+      // }
     },
     btnDeleteOnClick() {},
     btnCloneOnClick() {},

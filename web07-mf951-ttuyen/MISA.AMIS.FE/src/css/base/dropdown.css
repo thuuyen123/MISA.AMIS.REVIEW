@@ -1,0 +1,128 @@
+.dropdown {
+    position: relative;
+}
+
+.dropdown-list {
+    margin-top: 1px;
+    padding-left: 0;
+    list-style: none;
+    background-color: #fff;
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    right: 0;
+    padding-top: 2px;
+    border: 1px solid #babec5;
+    padding-bottom: 2px;
+    z-index: 103;
+    border-radius: 2px;
+    
+}
+
+.dropdown-header-wrapper {
+    padding: 6px 0px 6px 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+    outline: none;
+    border: 1px solid #bbbbbb;
+    height: 32px;
+    justify-content: space-between;
+}
+.dropdown-header-wrapper >input{
+    border: none;
+    width: 100%;
+    background-color: transparent;
+    flex: 1;
+}
+.dropdown-open{
+    font-size: 16px;
+    height: 30px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 0 2px 2px 0;
+}
+
+.dropdown-header-wrapper:focus,
+.dropdown-header-wrapper:hover,
+.dropdown-header-wrapper:active {
+    border-color: #01b075 !important;
+}
+
+/*dropdown item*/
+.dropdown-item {
+    height: 32px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #e9ebee;
+}
+
+/*icon của dropdown item*/
+.dropdown-item .dropdown-item-icon {
+    margin-right: 10px;
+    height: 16px;
+    width: 16px;
+    color: transparent;
+}
+
+/*text của dropdown item*/
+.dropdown-item .dropdown-item-text {
+    margin-right: 10px;
+    user-select: none;
+}
+
+
+.dropdown-item.active {
+    color: #35bf22;
+    background-color: #ebedf0;
+    font-weight: 700;
+}
+
+.dropdown-item-header{
+    font-weight: 700;
+    background-color: #f4f5f8;
+    margin-bottom: 2px;
+}
+li.dropdown-item.dropdown-item-header {
+    display: flex;
+    flex-basis: 100%;
+}
+.dropdown-item-text.dropdown-col-1 {
+    flex-basis: 30%;
+}
+.move-up {
+    transform: rotate(180deg);
+    transition: all 0.1ms;
+    z-index: 0;
+}
+
+.dropdown-list.show {
+    /* border: 1px solid #ccc; */
+    padding-top: 4px;
+    padding-bottom: 4px;
+    box-shadow: 0px 1px 8px 0px #ccc;
+}
+
+
+
+@media only screen and (max-width: 1114px){
+    .filter .dropdown {
+        width: 170px;
+        transition: all 0.5ms;
+
+    }
+    .filter input.input-search{
+        width: 150px;
+        transition: all 0.5ms;
+
+    }
+}

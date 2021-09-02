@@ -17,7 +17,7 @@ table.content-table thead th{
     height: 34px;
     min-height: 34px;
     border-right: 1px solid #c7c7c7;
-    /* border-left: 1px solid #c7c7c7; */
+    text-align: left;
     box-sizing: border-box;
    
 }
@@ -46,7 +46,6 @@ table.content-table th span{
     text-transform: uppercase!important;
     cursor: pointer;
     padding-right: 12px;
-
 }
 /* .content-table .option-header{
     border-left: 1px solid #bbbbbb;
@@ -72,16 +71,21 @@ table.content-table th span{
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 5px 10px;
+    padding: 5px 5px;
     box-sizing: border-box;
 }
 
 .sticky-cell-body.row-option .feature-text{
-    padding-right: 16px!important;
+    margin-right: 16px!important;
     color: #0075c0;
     font-weight: bold;
+    cursor: pointer;
+    padding: 2px 2px;
 }
-
+.sticky-cell-body.row-option .feature-text:hover,
+.sticky-cell-body.row-option .feature-text:active{
+    border: 1px solid #0075c0;
+}
 .sticky-cell-body.row-option button{
     border: none;  
     box-sizing: border-box;

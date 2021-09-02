@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="['m-btn', subClass]"
+    class="m-btn"
     @click="btnClick"
   >
   <div v-if="isIcon=='true'" :class="['m-btn-icon',iconClass]"></div>

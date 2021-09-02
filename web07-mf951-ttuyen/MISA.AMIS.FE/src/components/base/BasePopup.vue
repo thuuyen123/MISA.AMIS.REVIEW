@@ -1,5 +1,5 @@
 <template>
-  <div class="model-popup">
+  <div class="m-popup">
     <div class="popup-container">
       <div class="pop-content">
         <div class="pop-icon-container">
@@ -13,26 +13,26 @@
       </div>
       <div class="pop-option">
         <BaseButton
-          subClass="m-btn-secondary"
+          type="secondary"
           @btn-click="closePopup"
-          id="btnPopClose"
+          id="pop-2"
           :tabindex="1"
         >
           {{ $attrs.btn2 }}
         </BaseButton>
         <div>
           <BaseButton
-            subClass="m-btn-secondary"
-            id="btnPopCancel"
+            type="secondary"
+            id="pop-3"
             :tabindex="2"
             @btn-click="cancelPopup"
           >
             {{ $attrs.btn3 }}
           </BaseButton>
           <BaseButton
-            subClass="m-btn-primary"
+            type="primary"
             @btn-click="confirmPopup"
-            id="btnPopConfirm"
+            id="pop-1"
             :tabindex="3"
           >
             {{ $attrs.btn1 }}
@@ -79,6 +79,25 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 @import "../../css/base/popup.css";
+.m-popup[type="alert"] {
+  .pop-option {
+    justify-content: center;
+    #pop-2,
+    #pop-3 {
+      display: none;
+    }
+  }
+}
+.m-popup[type="warning"] {
+  .pop-option {
+    justify-content: flex-end;
+  }
+
+  #pop-2,
+  #pop-3 {
+    display: none;
+  }
+}
 </style>

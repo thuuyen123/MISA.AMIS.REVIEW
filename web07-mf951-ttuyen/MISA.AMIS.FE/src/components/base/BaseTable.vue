@@ -47,7 +47,7 @@
           v-for="(record, index) in tableData.data"
           :key="'record' + index"
           :id="'record' + index"
-          @dblclick="editClickHandler(index)"
+          @dblclick="btnEditOnClick(index)"
         >
           <td
             :id="'outter-left-cell-' + index"
@@ -83,13 +83,12 @@
             style="right: 24px"
           >
             <div class="option-feature">
-              <div class="feature-text" @click="editClickHandler(index)">
-                Sửa
-              </div>
-              <button
-                :active="index == selectedRow"
-              >
-                <div class="sprite icon-arrow-down-blue"></div>
+              <div class="feature-text" @click="btnEditOnClick(index)">Sửa</div>
+              <button ref="myButton" :active="index == selectedRow">
+                <div
+                  class="sprite icon-arrow-down-blue"
+                  @click="btnShowOption(index)"
+                ></div>
               </button>
             </div>
           </td>
@@ -102,23 +101,14 @@
         </tr>
       </tbody>
     </table>
-   <div class="no-data" v-if="tableData.data.length <=0 ">
-    <div class="no-data-img"></div>
-    <div class="no-data-text">Không có dữ liệu</div>
-  </div>
-
-    <BaseContextMenu
-      :isShow="isShowContextMenu"
-      :positionX="positionX"
-      :positionY="positionY"
-      @btnClone="btnCloneOnClick"
-      @btnDelete="btnDeleteOnClick"
-    />
+    <div class="no-data" v-if="tableData.data.length <= 0">
+      <div class="no-data-img"></div>
+      <div class="no-data-text">Không có dữ liệu</div>
+    </div>
   </div>
 </template>
 <script>
 import dayjs from "dayjs";
-import BaseContextMenu from "../../components/base/BaseContentMenu.vue";
 
 export default {
   name: "BaseTable",
@@ -142,33 +132,42 @@ export default {
 
       checkingRow: [],
 
-      isShowContextMenu: false,
-
-      positionX: "0px",
-
-      positionY: "0px",
+      top: 0,
     };
   },
-  components: {
-    BaseContextMenu,
-  },
+  components: {},
 
   methods: {
-    /**
-     * Hàm emit nhân bản bản ghi
-     * CreateBy: TTUyen (30/8/2021)
-     */
-    btnCloneOnClick() {
-      this.$emit("clone-btn-click");
+    btnShowOption(index) {
+      console.log(this.tableData.data[index]);
+      // this.top = this.$refs.myButton[0].getBoundingClientRect().top;
+      this.$emit(
+        "show-option-click",       
+        true,
+        this.tableData.data[index],
+      );
     },
+    /**
+     * Hàm emit khi bấm sửa
+     */
+    btnEditOnClick(index) {
+      this.$emit("edit-btn-click", false, "edit", this.tableData.data[index]);
+    },
+      /**
+       * Hàm emit nhân bản bản ghi
+       * CreateBy: TTUyen (30/8/2021)
+       */
+      btnCloneOnClick() {
+        this.$emit("clone-btn-click");
+      },
 
-    /**
-     * Hàm emit xóa bản ghi
-     * CreateBy TTUyen (30/8/2021)
-     */
-    btnDeleteOnClick() {
-      this.$emit("delete-btn-click");
-    },
+      /**
+       * Hàm emit xóa bản ghi
+       * CreateBy TTUyen (30/8/2021)
+       */
+      btnDeleteOnClick() {
+        this.$emit("delete-btn-click");
+      },
 
     /**
      * Hàm format date
@@ -189,15 +188,6 @@ export default {
         return "";
       }
       return dayjs(date).format("DD/MM/YYYY");
-    },
-
-    /**
-     * Hàm emit khi bấm sửa
-     */
-    editClickHandler(index) {
-      console.log(index);
-      console.log(this.tableData.data[index]); 
-      this.$emit("edit-btn-click", true, "edit", this.tableData.data[index]);
     },
   },
 };

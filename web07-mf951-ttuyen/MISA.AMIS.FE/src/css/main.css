@@ -55,6 +55,12 @@ a{
 .text-align-right{
     text-align: right;
 }
+.input-border-red {
+    border-color: #f65454 !important;
+}
+.input-border-normal{
+    border-color: #bbbbbb !important    ;
+}
 
 @import "../css/common/common.css";
 @import "../css/base/icon.css";
