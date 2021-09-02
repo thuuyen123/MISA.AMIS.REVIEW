@@ -192,7 +192,7 @@ namespace MISA.ApplicationCore.Services
                     if (entityByProp != null)
                     {
                         devMsg += string.Format(Properties.ResourcesVN.ErrorDevMsgDuplicate, name) + " ,";
-                        userMsg += string.Format(Properties.ResourcesVN.ErrorUserMsgValidate, name) + " ,";
+                        userMsg += string.Format(Properties.ResourcesVN.ErrorUserMsgDuplicateCode, propertyValue.ToString()) + " ,";
                         mesError.Add(string.Format(Properties.ResourcesVN.ErrorDevMsgDuplicate, name));
                         _serviceResult.ErrorCode = MISACode.NoValid;
                         isValidated = false;
@@ -215,25 +215,27 @@ namespace MISA.ApplicationCore.Services
                 //format email
                 if (property.IsDefined(typeof(FormatEmail), false))
                 {
-                    var emailFormat = @"^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$";
-                    var isMatch = Regex.IsMatch(propertyValue.ToString(), emailFormat, RegexOptions.IgnoreCase);
-                    if (isMatch == false)
+                    if (!string.IsNullOrEmpty(propertyValue.ToString()))
                     {
+                        var emailFormat = @"^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$";
+                        var isMatch = Regex.IsMatch(propertyValue.ToString(), emailFormat, RegexOptions.IgnoreCase);
+                        if (isMatch == false)
+                        {
 
-                        devMsg += string.Format(Properties.ResourcesVN.ErrorDevMsgValidate, name) + " ,";
-                        userMsg += string.Format(Properties.ResourcesVN.ErrorUserMsgValidate, name) + " ,";
-                        isValidated = false;
-                        mesError.Add(string.Format(Properties.ResourcesVN.ErrorUserMsgValidate, name));
-                        _serviceResult.ErrorCode = MISACode.NoValid;
+                            devMsg += string.Format(Properties.ResourcesVN.ErrorDevMsgValidate, name) + " ,";
+                            userMsg += string.Format(Properties.ResourcesVN.ErrorUserMsgValidate, name) + " ,";
+                            isValidated = false;
+                            mesError.Add(string.Format(Properties.ResourcesVN.ErrorUserMsgValidate, name));
+                            _serviceResult.ErrorCode = MISACode.NoValid;
 
+                        }
                     }
-                
                 }
             }
             var data = new
             {
-                devMsgError = devMsg,
-                userMsgError = userMsg,
+                devMsg = devMsg,
+                userMsg = userMsg,
 
             };
             _serviceResult.Data = data;

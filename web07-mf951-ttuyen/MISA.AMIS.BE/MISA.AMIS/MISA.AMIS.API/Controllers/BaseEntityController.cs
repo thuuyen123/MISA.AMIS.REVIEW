@@ -47,7 +47,9 @@ namespace MISA.CukCuk.Api.Controllers
             try
             {
                 var entities = _baseRepository.Get();
-                return StatusCode(200, entities);
+                _serviceResult.Data = entities;
+                _serviceResult.Status = RequestStatus.Complete;
+                return StatusCode(200, _serviceResult);
             }
             catch (Exception ex)
             {
@@ -88,7 +90,7 @@ namespace MISA.CukCuk.Api.Controllers
                 };
                 _serviceResult.Data = entity;
                 _serviceResult.Status = RequestStatus.Complete;
-                var response = StatusCode(200, _serviceResult.Data);
+                var response = StatusCode(200, _serviceResult);
                 return response;
             }
             catch (Exception ex)
@@ -120,7 +122,7 @@ namespace MISA.CukCuk.Api.Controllers
                 if (result.ErrorCode == MISACode.IsValid)
                 {
                     result.Status = RequestStatus.Complete;
-                    return StatusCode(201, result.Data);
+                    return StatusCode(201, result);
                 }
                 else if (result.ErrorCode == MISACode.NoValid)
                 {
@@ -179,7 +181,7 @@ namespace MISA.CukCuk.Api.Controllers
                 if (result.ErrorCode == MISACode.IsValid)
                 {
                     result.Status = RequestStatus.Complete;
-                    return StatusCode(200, result.Data);
+                    return StatusCode(200, result);
                 }
                 else
                 {
@@ -216,7 +218,7 @@ namespace MISA.CukCuk.Api.Controllers
                 if (result.ErrorCode == MISACode.IsValid)
                 {
                     result.Status = RequestStatus.Complete;
-                    return StatusCode(200, result.Data);
+                    return StatusCode(200, result);
                 }
                 else if (result.ErrorCode == MISACode.NoValid)
                 {

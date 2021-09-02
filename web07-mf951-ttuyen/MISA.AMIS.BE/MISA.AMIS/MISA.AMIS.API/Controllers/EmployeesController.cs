@@ -55,7 +55,7 @@ namespace MISA.CukCuk.Api.Controllers
                 if (result.ErrorCode == MISACode.IsValid)
                 {
                     result.Status = RequestStatus.Complete;
-                    return StatusCode(201, result.Data);
+                    return StatusCode(201, result);
                 }
                 else if (result.ErrorCode == MISACode.NoValid)
                 {
@@ -97,7 +97,7 @@ namespace MISA.CukCuk.Api.Controllers
                 if (result.ErrorCode == MISACode.IsValid)
                 {
                     result.Status = RequestStatus.Complete;
-                    return StatusCode(200, result.Data);
+                    return StatusCode(200, result);
                 }
                 else if (result.ErrorCode == MISACode.NoValid)
                 {
