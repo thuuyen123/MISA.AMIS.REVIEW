@@ -124,7 +124,7 @@ namespace MISA.ApplicationCore.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Mã nhân viên &lt;{0}&gt; đã tồn tại trong hệ thống, vui lòng kiểu tra lại! .
+        ///   Looks up a localized string similar to Mã nhân viên &lt;{0}&gt; đã tồn tại trong hệ thống, vui lòng kiểu tra lại..
         /// </summary>
         public static string ErrorUserMsgDuplicateCode {
             get {

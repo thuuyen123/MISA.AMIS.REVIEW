@@ -1,4 +1,4 @@
- .layout-paging{
+ .layout-paging {
      display: flex;
      justify-content: space-between;
      align-items: center;
@@ -8,53 +8,74 @@
      background-color: #fff;
      z-index: 6;
  }
- .paging-filter{
+
+ .paging-filter {
      display: flex;
      justify-content: center;
  }
- .layout-paging .paging-container{
+
+ .layout-paging .paging-container {
      display: flex;
      justify-content: flex-end;
  }
-.layout-paging .paging-container .paging-btn {
+
+ .paging-container li {
+     list-style-type: none;
+ }
+
+ .layout-paging .paging-container .paging-btn {
+    display: flex;
+    align-items: center;
     height: 24px;
-    border-radius: 2px;
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
-    font-family: NotoSans-Regular;
+     border-radius: 2px;
+     border: none;
+     cursor: pointer;
+     background-color: transparent;
+     font-family: NotoSans-Regular;
+ }
 
-}
+ .active {
+     border: 1px solid #e0e0e0;
+     font-weight: 700;
+ }
 
-.layout-paging .paging-container .paging-num {
-    height: 24px;
-    width: 24px;
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
-    background-color: transparent;
-    padding-right: .5rem!important;
-    padding-left: .5rem!important;
-    font-family: NotoSans-Regular;
+.paging-container .active {
+     border: 1px solid #e0e0e0;
+     font-weight: 900;
+ }
 
-}
+.paging-container .disabled {
+     color: #a6a6a6;
+ }
 
-.layout-paging .paging-container .paging-num:hover,
-.layout-paging .paging-container .paging-num:active {
-    background-color: white;
-}
+ .layout-paging .paging-container .paging-num {
+     height: 24px;
+     width: 24px;
+     border-radius: 2px;
+     cursor: pointer;
+     background-color: transparent;
+     padding-right: .5rem!important;
+     padding-left: .5rem!important;
+     font-family: NotoSans-Regular;
+ }
 
-.layout-paging  .paging-num.pageSelected {
-    border: 1px solid #e0e0e0;
-    font-weight: 700;
-}
+ .layout-paging .paging-container .paging-num:hover, .layout-paging .paging-container .paging-num:active {
+     background-color: white;
+ }
 
- input{
+ .layout-paging .paging-num.pageSelected {
+     border: 1px solid #e0e0e0;
+     font-weight: 700;
+ }
+
+ input {
      border: 1px solid;
  }
- .mr-1{
+
+ .mr-1 {
      margin-right: 1rem!important;
  }
- .ml-1{
-    margin-left: 1rem!important;
+
+ .ml-1 {
+     margin-left: 1rem!important;
  }

@@ -153,8 +153,8 @@ namespace MISA.ApplicationCore.Services
             var mesError = new List<string>();
             //Lấy ra tất cả các property của class
             var properties = typeof(TEntity).GetProperties();
-            var devMsg = "";
-            var userMsg = "";
+            var devMsg = new List<String>();
+            var userMsg = new List<String>();
             foreach (var property in properties)
             {
                 //lấy giá trị của property
@@ -177,8 +177,8 @@ namespace MISA.ApplicationCore.Services
                     if (string.IsNullOrEmpty(propertyValue.ToString()))
                     {
 
-                        devMsg += Properties.ResourcesVN.ErrorDevMsgRequire + " ,";
-                        userMsg += Properties.ResourcesVN.ErrorUserMsgRequire + " ,";
+                        devMsg.Add(Properties.ResourcesVN.ErrorDevMsgRequire);
+                        userMsg.Add(Properties.ResourcesVN.ErrorUserMsgRequire);
                         mesError.Add(string.Format(Properties.ResourcesVN.ErrorDevMsgRequire, name));
                         _serviceResult.ErrorCode = MISACode.NoValid;
                         isValidated = false;
@@ -191,9 +191,12 @@ namespace MISA.ApplicationCore.Services
 
                     if (entityByProp != null)
                     {
-                        devMsg += string.Format(Properties.ResourcesVN.ErrorDevMsgDuplicate, name) + " ,";
-                        userMsg += string.Format(Properties.ResourcesVN.ErrorUserMsgDuplicateCode, propertyValue.ToString()) + " ,";
+                        devMsg.Add(string.Format(Properties.ResourcesVN.ErrorDevMsgDuplicate, name));
+                    
+                        userMsg.Add(string.Format(Properties.ResourcesVN.ErrorUserMsgDuplicateCode, propertyValue.ToString()));
+                        
                         mesError.Add(string.Format(Properties.ResourcesVN.ErrorDevMsgDuplicate, name));
+                        
                         _serviceResult.ErrorCode = MISACode.NoValid;
                         isValidated = false;
                     }
@@ -202,9 +205,13 @@ namespace MISA.ApplicationCore.Services
                 if (property.IsDefined(typeof(MaxLength), false))
                 {
                     // lấy ra độ dài khai báo
+                  
                     var attributeMaxLength = property.GetCustomAttributes(typeof(MaxLength), true)[0];
+                    
                     var length = (attributeMaxLength as MaxLength).Length;
+                    
                     var msg = (attributeMaxLength as MaxLength).ErrorMsg;
+                    
                     if (propertyValue.ToString().Trim().Length > length)
                     {
                         isValidated = false;
@@ -218,14 +225,20 @@ namespace MISA.ApplicationCore.Services
                     if (!string.IsNullOrEmpty(propertyValue.ToString()))
                     {
                         var emailFormat = @"^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$";
+                      
                         var isMatch = Regex.IsMatch(propertyValue.ToString(), emailFormat, RegexOptions.IgnoreCase);
+                        
                         if (isMatch == false)
                         {
 
-                            devMsg += string.Format(Properties.ResourcesVN.ErrorDevMsgValidate, name) + " ,";
-                            userMsg += string.Format(Properties.ResourcesVN.ErrorUserMsgValidate, name) + " ,";
+                            devMsg.Add(string.Format(Properties.ResourcesVN.ErrorDevMsgValidate, name));
+                           
+                            userMsg.Add(string.Format(Properties.ResourcesVN.ErrorUserMsgValidate, name));
+                            
                             isValidated = false;
+                            
                             mesError.Add(string.Format(Properties.ResourcesVN.ErrorUserMsgValidate, name));
+                            
                             _serviceResult.ErrorCode = MISACode.NoValid;
 
                         }

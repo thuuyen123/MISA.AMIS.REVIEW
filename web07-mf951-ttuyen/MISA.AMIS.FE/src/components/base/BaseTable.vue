@@ -84,7 +84,7 @@
           >
             <div class="option-feature">
               <div class="feature-text" @click="btnEditOnClick(index)">Sửa</div>
-              <button ref="myButton" :active="index == selectedRow">
+              <button ref="myButton">
                 <div
                   class="sprite icon-arrow-down-blue"
                   @click="btnShowOption(index)"
@@ -124,13 +124,9 @@ export default {
   },
   data() {
     return {
-      // hàng đang được chọn
-      selectedRow: -1,
 
       //Chọn hết checkbox
       checkAll: false,
-
-      checkingRow: [],
 
       top: 0,
     };

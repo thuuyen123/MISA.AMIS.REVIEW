@@ -14,10 +14,7 @@
           </div>
           <div class="dialog-header-options">
             <div class="m-btn-question sprite icon-question-mark"></div>
-            <div
-              class="m-btn-close sprite icon-x"
-              @click="btnCloseDialog"
-            ></div>
+            <div class="m-btn-close sprite icon-x" @click="btnExitForm"></div>
           </div>
         </div>
 
@@ -80,15 +77,26 @@
           </div>
           <div class="form-block-2">
             <BaseLabel label="Ngày sinh">
-              <BaseInput
-                ref="inputDateOfBirth"
-                id="txtDateOfBirth"
-                type="date"
-                displayName="Ngày sinh"
-                value=""
-                placeholder=""
+              <DatePicker
                 v-model="employeeDetail.DateOfBirth"
-              />
+                :format="'DD/MM/YYYY'"
+                :value-type="'YYYY-MM-DD'"
+                placeholder="DD/MM/YYYY"
+                :disabled-date="(date) => date >= new Date()"
+                style="width: 100%; outline-color: #2ca01c"
+              >
+                <BaseInput
+                  ref="inputDateOfBirth"
+                  id="txtDateOfBirth"
+                  type="date"
+                  displayName="Ngày sinh"
+                  value=""
+                  placeholder=""
+                  v-model="employeeDetail.DateOfBirth"
+                  style="width: 100%; outline-color: #2ca01c"
+                />
+                <!-- <input type="date" class="m-input" placeholder="DD/MM/YYYY" /> -->
+              </DatePicker>
             </BaseLabel>
 
             <BaseLabel label="Giới tính">
@@ -132,15 +140,25 @@
               />
             </BaseLabel>
             <BaseLabel label="Ngày cấp">
-              <BaseInput
-                ref="inputIdentityDate"
-                id="dtIdentityDate"
-                type="date"
-                displayName="Ngày cấp"
-                value=""
-                placeholder="DD/MM/YYYY"
+              <DatePicker
                 v-model="employeeDetail.IdentityDate"
-              />
+                :format="'DD/MM/YYYY'"
+                :value-type="'YYYY-MM-DD'"
+                placeholder="DD/MM/YYYY"
+                :disabled-date="(date) => date >= new Date()"
+                style="width: 100%; outline-color: #2ca01c"
+              >
+                <BaseInput
+                  ref="inputIdentityDate"
+                  id="txtIdentityDate"
+                  type="date"
+                  displayName="Ngày cấp"
+                  value=""
+                  placeholder="DD/MM/YYYY"
+                  v-model="employeeDetail.IdentityDate"
+                  style="width: 100%; outline-color: #2ca01c"
+                />
+              </DatePicker>
             </BaseLabel>
             <BaseLabel label="Nơi cấp">
               <BaseInput
@@ -249,7 +267,7 @@
             <BaseButton
               type="secondary"
               id="btnDialogCancel"
-              @btn-click="btnCloseDialog"
+              @btn-click="btnCancelForm"
             >
               Hủy
             </BaseButton>
@@ -317,7 +335,8 @@ import BasePopup from "../../components/base/BasePopup.vue";
 import BaseDropdownDepartment from "../../components/base/BaseDropdownDepartment.vue";
 import { CommonFn } from "../../js/common/common";
 import axios from "axios";
-
+import DatePicker from "vue2-datepicker";
+import "vue2-datepicker/index.css";
 export default {
   name: "EmployeeDetail",
   components: {
@@ -326,6 +345,7 @@ export default {
     BaseButton,
     BasePopup,
     BaseDropdownDepartment,
+    DatePicker,
   },
   props: {
     status: {
@@ -353,6 +373,8 @@ export default {
 
       //Nội dung thông báo lõi
       warningServerMsg: "",
+
+      originalEmployeeRecord: {},
 
       //Lưu dữ liệu
       employeeDetail: {
@@ -393,7 +415,7 @@ export default {
             value.data.IdentityDate
           );
         }
-       this.resetInput();
+        this.resetInput();
         switch (value.formMode) {
           case "add":
             await this.addForm();
@@ -408,11 +430,16 @@ export default {
             break;
         }
       }
+      let a = this.employeeDetail;
+      console.log(a);
+      this.originalEmployeeRecord = { ...this.employeeDetail };
+      console.log(this.originalEmployeeRecord);
     },
   },
   methods: {
-    btnSaveAndAddForm() {
-      alert(1);
+    async btnSaveAndAddForm() {
+      await this.btnSaveForm();
+      this.$emit("changeState", false, "add");
     },
     /**
      * Hiển thị form thêm
@@ -461,7 +488,6 @@ export default {
       try {
         if (me.status.data) {
           me.employeeDetail = me.status.data;
-          // console.log(me.employeeDetail);
         }
         me.$refs.inputEmployeeCode.$refs.input.focus();
       } catch (e) {
@@ -488,7 +514,6 @@ export default {
 
     async btnSaveForm() {
       this.invalidRef = [];
-
       //Loop qua thông tin nhân viên
       //Kiểm tra valid của từng input
       Object.entries(this.$refs).forEach(([key, el]) => {
@@ -526,17 +551,18 @@ export default {
             await axios
               .post(this.myUrl + "Employees", employee)
               .then((res) => {
-                alert("addOk");
-                console.log(res.data);
                 if (res.status != 204) {
-                  alert("Thành công");
-                } else {
-                  alert("Không thành công");
-                  this.showPopupWarningServer(res.data.Data.userMsg);
+                  this.$toast.success("Thêm mới thành công", {
+                    position: "bottom-right",
+                    timeout: 2000,
+                  });
+                  this.$emit("changeState", true);
                 }
               })
-              .catch((res) => {
-                console.log(res);
+              .catch((error) => {
+                this.showPopupWarningServer(
+                  error.response.data.Data.userMsg[0]
+                );
               });
             break;
           case "clone":
@@ -546,13 +572,15 @@ export default {
                 alert("addOk");
                 console.log(res.data);
                 if (res.status != 204) {
-                  alert("Thành công");
-                } else {
-                  this.showPopupWarningServer(res.data.Data.userMsg);
+                  this.$toast.success("Nhân bản thành công", {
+                    position: "bottom-right",
+                    timeout: 2000,
+                  });
+                  this.$emit("changeState", true);
                 }
               })
               .catch((res) => {
-                console.log(res);
+                this.showPopupWarningServer(res.response.data.Data.userMsg[0]);
               });
             break;
           case "edit":
@@ -563,18 +591,18 @@ export default {
               )
               .then((res) => {
                 console.log(res.data);
-                alert("editok");
                 if (res.status == 200) {
-                  alert("Thành công");
-                } else {
-                  this.showPopupWarningServer(res.data.Data.userMsg);
+                  this.$toast.success("Sửa thành công", {
+                    position: "bottom-right",
+                    timeout: 2000,
+                  });
+                  this.$emit("changeState", true);
                 }
               })
               .catch((res) => {
-                console.log(res);
+                this.showPopupWarningServer(res.response.data.Data.userMsg[0]);
               });
             break;
-
           default:
             break;
         }
@@ -588,7 +616,6 @@ export default {
       this.warningServerMsg = message;
       this.isWarningServerPopShow = true;
     },
-
     /**
      * Thông báo trường không hợp lệ
      * @param {String} message
@@ -609,6 +636,7 @@ export default {
      */
     cancelSaveChangesPopup() {
       this.saveChangesPopupShow = false;
+      this.$emit("changeState", true);
     },
 
     /**
@@ -616,6 +644,7 @@ export default {
      */
     confirmSaveChangesPopup() {
       this.saveChangesPopupShow = false;
+      this.btnSaveForm();
     },
 
     onNotifyInValidPopShowConfirm() {
@@ -623,20 +652,36 @@ export default {
       this.invalidRef[0].$el.querySelector("input").focus();
     },
     /**
-     * Đóng form
+     * Đóng form ( nút hủy trong form)
      */
-    btnCloseDialog() {
-      // if(this.status.formMode == "edit"){
-      //   this.$emit("clear-data");
-      // }
-      this.$emit("btnCloseDialog");
+    btnCancelForm() {
+      this.$emit("changeState", true);
     },
 
+    /**
+     * Thoát khi click vào button X ktra xem có bản ghi đã thay đổi chưa
+     */
+    btnExitForm() {
+      let isChange = false;
+
+      //Kiểm tra form bị thay đổi
+      Object.entries(this.originalEmployeeRecord).forEach(([key]) => {
+        if (this.originalEmployeeRecord[key] !== this.employeeDetail[key]) {
+          isChange = true;
+        }
+      });
+
+      if (isChange) {
+        this.saveChangesPopupShow = true;
+      } else {
+        this.btnCancelForm();
+      }
+    },
     async resetInput() {
       await Object.entries(this.employeeDetail).forEach(([key]) => {
         // if (key != "EmployeeCode") {
-          // console.log(key);
-          this.employeeDetail[key] = "";
+        // console.log(key);
+        this.employeeDetail[key] = "";
         // }
       });
     },

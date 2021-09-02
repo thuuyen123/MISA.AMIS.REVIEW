@@ -139,7 +139,7 @@
     <value>Dữ liệu {0} không hợp lệ!</value>
   </data>
   <data name="ErrorUserMsgDuplicateCode" xml:space="preserve">
-    <value>Mã nhân viên &lt;{0}&gt; đã tồn tại trong hệ thống, vui lòng kiểu tra lại! </value>
+    <value>Mã nhân viên &lt;{0}&gt; đã tồn tại trong hệ thống, vui lòng kiểu tra lại.</value>
   </data>
   <data name="ErrorUserMsgExeption" xml:space="preserve">
     <value>Có lỗi xảy ra! Vui lòng liên hệ với MISA!</value>

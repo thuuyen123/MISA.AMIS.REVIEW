@@ -46,4 +46,10 @@
     gap: 6px;
 }
 
+.pop-text{
+    margin-left: 10px;
+}
+.pop-text p{
+    line-height: 24px;
+}
 

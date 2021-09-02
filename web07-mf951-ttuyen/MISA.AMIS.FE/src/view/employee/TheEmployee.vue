@@ -6,7 +6,7 @@
         tabindex="1"
         isIcon="false"
         id="btnAdd"
-        @btn-click="btnShowDialog"
+        @btn-click="changeStatusForm"
         type="primary"
       >
         Thêm mới nhân viên
@@ -29,20 +29,27 @@
       </div>
       <BaseTable
         :tableData="table"
-        @edit-btn-click="btnShowDialog"
+        @edit-btn-click="changeStatusForm"
         @show-option-click="showOptionOnClick"
       />
     </div>
 
     <div class="layout-footer">
-      <BasePaging />
+      <BasePaging
+        :totalRecord="totalRecord"
+        :pageIndex="pageIndex"
+        :pageSize="pageIndex"
+        :totalPages="totalPages"
+      />
     </div>
     <div class="dialog">
       <EmployeeDetail
         :hideLoader="isHideLoader"
         :status="recordStatus"
-        @btnCloseDialog="btnCloseDialog"
+        @
+        @btnCloseDialog="changeStatusForm"
         @reloadData="reloadData"
+        @changeState="changeStatusForm"
       />
     </div>
     <BaseLoader :hideLoader="isHideLoader" />
@@ -52,6 +59,7 @@
       @btnClone="btnShowDialogClone"
       @btnDelete="btnShowDelete"
     />
+    <!-- <BaseMessage/> -->
   </div>
 </template>
 <script>
@@ -62,6 +70,7 @@ import BaseTable from "../../components/base/BaseTable.vue";
 import BasePaging from "../../components/base/BasePaging.vue";
 import EmployeeDetail from "../employee/EmployeeDetail.vue";
 import BaseLoader from "../../components/base/BaseLoader.vue";
+// import BaseMessage from "../../components/base/BaseMessage.vue";
 import BaseContextMenu from "../../components/base/BaseContentMenu.vue";
 import { directive as onClickaway } from "vue-clickaway";
 
@@ -78,6 +87,7 @@ export default {
     EmployeeDetail,
     BaseLoader,
     BaseContextMenu,
+    // BaseMessage,
   },
   data() {
     return {
@@ -184,6 +194,10 @@ export default {
     btnShowDelete() {
       console.log("1");
     },
+
+    // changeStatusForm(isHideForm, ){
+
+    // }
     /**
      *Hiển thị contextMenu
      */
@@ -213,13 +227,14 @@ export default {
     /**
      * Hiển thị form dialog
      */
-    async btnShowDialog(isHide, formMode = "add", data = []) {
+    async changeStatusForm(isHide, formMode = "add", data = []) {
       console.log(isHide);
       this.recordStatus = {
         isHide: isHide,
         formMode: formMode,
         data: data,
       };
+      this.reloadData();
     },
 
     async loadAllData() {
@@ -250,8 +265,8 @@ export default {
     reloading() {
       this.isHideLoader = false;
       setTimeout(() => {
-        this.hideLoader = true;
-      }, 2000);
+        this.isHideLoader = true;
+      }, 1500);
     },
 
     /**
@@ -259,18 +274,6 @@ export default {
      */
     closeReloading() {
       this.isHideLoader = true;
-    },
-
-    /**
-     * Hàm đóng form
-     */
-    btnCloseDialog() {
-      this.loadData();
-      this.recordStatus={
-        isHide : true,
-        // formMode : "add",
-        // data: [],
-      }
     },
 
     /**
@@ -328,7 +331,7 @@ export default {
             console.log(res);
             // this.showMessage(type.WARNING, [message.EXCEPTION_MSG]);
           });
-        me.closeReloading();
+        // me.closeReloading();
       } catch (error) {
         console.log(error);
       }
@@ -370,13 +373,8 @@ export default {
         });
       me.closeReloading();
     },
-    reloadData(){
+    reloadData() {
       this.loadData();
-      // this.recordStatus={
-      //   isHide : true,
-      //   formMode : "add",
-      //   data: [],
-      // }
     },
     btnDeleteOnClick() {},
     btnCloneOnClick() {},
