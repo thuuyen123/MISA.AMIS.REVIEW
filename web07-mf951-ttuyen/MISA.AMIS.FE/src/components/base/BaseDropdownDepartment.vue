@@ -58,7 +58,7 @@
 
 <script>
 import axios from "axios";
-import { MESSAGE } from "../../js/common/const";
+import { MESSAGE, CONFIG } from "../../js/common/const";
 import { directive as onClickaway } from "vue-clickaway";
 export default {
   directives: {
@@ -114,19 +114,30 @@ export default {
     this.initChoice();
   },
   watch: {
+    /**
+     * Xử lý khi thay đổi lựa chọn
+     *  CreateBy: TTUyen (30/8/2021)
+     */
     selectedId: function () {
       this.initChoice();
     },
   },
   methods: {
+    /**
+     * Đóng dropdown khi click ra ngoài
+     * CreateBy: TTUyen (30/8/2021)
+     */
     away: function () {
       this.opened = false;
     },
 
-    //Lấy dữ liệu department từ database
+    /**
+     * Lấy dữ liệu department từ database
+     * CreateBy: TTUyen (30/8/2021)
+     */
     async loadDropdownData() {
       await axios
-        .get(`https://localhost:44331/api/v1/Departments`)
+        .get(`${CONFIG.MY_URL}Departments`)
         .then((res) => {
           this.itemlist = res.data.Data;
         })
@@ -137,6 +148,7 @@ export default {
 
     /**
      *  Lấy dữ liệu theo để hiện thị
+     * CreateBy: TTUyen (30/8/2021)
      */
     async initChoice() {
       let me = this;
@@ -160,6 +172,7 @@ export default {
 
     /**
      * Xử lý khi lick và vào các item
+     * CreateBy: TTUyen (30/8/2021)
      */
     clickItem(itemValue, itemName, itemCode) {
       this.currentId = itemValue;
@@ -171,11 +184,18 @@ export default {
       this.isValid = true;
       this.isRequiredValid = true;
     },
+
+    /**
+     * Hàm đóng list dropdown
+     * CreateBy: TTUyen (30/8/2021)
+     */
     toggleItems() {
       this.opened = !this.opened;
     },
+    
     /**
-     * Hàm nhập input
+     * Hàm xử lý khi nhập input
+     * CreateBy: TTUyen (30/8/2021)
      */
     onInput(value) {
       let me = this;
@@ -183,17 +203,25 @@ export default {
       me.$emit("input", value);
       me.validateInput(value);
     },
+
+    /**
+     * Hàm xử lý khi blur input
+     * CreateBy: TTUyen (30/8/2021)
+     */
     onBlur(value) {
       let me = this;
       me.focusing = false;
       me.validateInput(value);
     },
 
+  /**
+   * Hàm định dạng giá trị trong input
+   * CreateBy: TTUyen (30/8/2021)
+   */
     validateInput(value) {
       let me = this;
       //Kiểm tra nhập các trường bắt buộc
       if (!me.required && value == "") {
-        // me.borderRed = false;
         me.isValid = true;
         me.isRequiredValid = true;
         return;
@@ -201,26 +229,22 @@ export default {
 
       //Rỗng và bắt buộc
       if (value == "" && me.required) {
-        // me.borderRed = true;
         me.isRequiredValid = false;
         me.tooltip = MESSAGE.CANT_BE_NULL.format(me.displayName);
         return;
       } else {
-        // me.borderRed = true;
         me.isRequiredValid = true;
       }
       if (me.isRequiredValid && me.isValid) {
         me.tooltip = "";
-        // me.borderRed = false;
-        // me.borderNormal = true;
       }
     },
 
     /**
      * Hàm reset lại các thuộc tính khi thoát khỏi form
+     * CreateBy: TTUyen (30/8/2021)
      */
     reset() {
-      // this.borderRed = false;
       this.isValid = true;
       this.isRequiredValid = true;
     },

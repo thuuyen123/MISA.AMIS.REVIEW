@@ -9,12 +9,14 @@ namespace MISA.ApplicationCore.Interfaces.Repository
 {
     public interface IEmployeeRepository: IBaseRepository<Employee>
     {
-       
+
         /// <summary>
-        /// Trả về new id
+        /// Sinh mã mới cho nhân viên
+        /// Sinh mã mới cho nhân viên
         /// </summary>
-        /// <returns></returns>
-         string GetNewEmployeeCode();
+        /// <returns>Mã nhân viên mới</returns>
+        /// Created By : TTUyen ( 28/08/2021)
+        string GetNewEmployeeCode();
 
         /// <summary>
         ///  Lấy danh sách khách hàng theo từng điều kiện lọc

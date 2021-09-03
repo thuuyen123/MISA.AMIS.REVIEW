@@ -30,6 +30,6 @@ namespace MISA.ApplicationCore.Entities
         /// </summary>
         public string KeySearch { get; set; } = "";
 
-       
+
     }
 }

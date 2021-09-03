@@ -21,6 +21,8 @@
     transform: translateX(-50%) translateY(-50%);
     width: 900px;
     height: 600px;
+    border-radius: 4px;
+
 }
 
 .dialog-content .dialog-header {
@@ -131,7 +133,7 @@
 }
 
 .dialog-content-form .form-block-2>.label-field-input:nth-child(4) {
-    flex-basis: 60%;
+    flex-basis: 40%;
     margin-left: 6px;
 }
 

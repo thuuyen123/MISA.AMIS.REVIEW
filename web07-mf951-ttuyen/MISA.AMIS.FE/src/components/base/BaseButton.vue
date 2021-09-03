@@ -18,6 +18,10 @@ export default {
     isIcon: String,
   },
   methods:{
+    /**
+     * Bẩm click button
+     * CreateBy: TTUyen (28/7/2021) 
+     */
     btnClick(){
       this.$emit('btn-click');
     }

@@ -8,7 +8,7 @@ namespace MISA.ApplicationCore.MISAAttribute
 {
     /// <summary>
     /// Thuộc tính để check bắt buộc nhập
-    /// CreatedBy: TTUyen
+    /// Created By : TTUyen ( 28/08/2021)
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class Required : Attribute
@@ -18,7 +18,7 @@ namespace MISA.ApplicationCore.MISAAttribute
 
     /// <summary>
     /// Thuộc tính dùng để check trùng mã
-    /// CreatedBy: TTUyen
+    /// Created By : TTUyen ( 28/08/2021)
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class Duplicated : Attribute
@@ -37,7 +37,7 @@ namespace MISA.ApplicationCore.MISAAttribute
     }
     /// <summary>
     /// Thuộc tính dùng để check độ dài
-    /// CreatedBy: TTUyen
+    /// Created By : TTUyen ( 28/08/2021)
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class MaxLength : Attribute
@@ -53,7 +53,7 @@ namespace MISA.ApplicationCore.MISAAttribute
 
     /// <summary>
     /// Thuộc tính dùng để hiển thị các trường thông tin lên cho người dùng biết là trường đó được gọi là gì
-    /// CreatedBy: TTUyen
+    /// Created By : TTUyen ( 28/08/2021)
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class DisplayName : Attribute

@@ -64,8 +64,10 @@ namespace MISA.ApplicationCore.Services
             {
                 var msgError = new
                 {
-                    devMsg = string.Format(Properties.ResourcesVN.ErrorDevMsgValidate, "mã nhân viên"),
-                    userMsg = string.Format(Properties.ResourcesVN.ErrorUserMsgValidate, "mã nhân viên"),
+                    
+                    devMsg = string.Format(Properties.ResourcesVN.ErrorDevMsgValidate, ($"<{entity.GetType().GetProperty("EmployeeCode").GetValue(entity)}>")),
+
+                    userMsg = string.Format(Properties.ResourcesVN.ErrorUserMsgValidate, ($"<{entity.GetType().GetProperty("EmployeeCode").GetValue(entity)}>")),
                     dataError = "EmployeeCode",
                 };
                 _serviceResult.Messager = string.Format(Properties.ResourcesVN.ErrorDevMsgValidate, "Mã Nhân viên");
@@ -76,13 +78,6 @@ namespace MISA.ApplicationCore.Services
             return base.Add(entity);
         }
 
-        /// <summary>
-        /// Cập nhật thông tin bản ghi
-        /// </summary>
-        /// <param name="entity">Object cập nhật</param>
-        /// <param name="entityId">id</param>
-        /// <returns>Kết quả ServiceResult</returns>
-        /// CreateBy: TTUyen
         public override ServiceResult Update(Employee entity, Guid entityId)
         {
             var isValid = ValidateCustom(entity);
@@ -101,11 +96,6 @@ namespace MISA.ApplicationCore.Services
             return base.Update(entity, entityId);
         }
 
-        /// <summary>
-        /// Hàm sinh mã mới cho nhân viên
-        /// </summary>
-        /// <returns>Chuổi mã mới</returns>
-        /// CreateBy: TTUyen
         public string GetNewEmployeeCode()
         {
             var employeeCode = _employeeRepository.GetNewEmployeeCode();
@@ -134,12 +124,7 @@ namespace MISA.ApplicationCore.Services
 
 
 
-        /// <summary>
-        ///  Lấy danh sách khách hàng theo từng điều kiện lọc
-        /// </summary>
-        /// <param name="filter">Object chứa nội dung lọc</param>
-        /// <returns>Danh sách khách hàng theo điều kiện lọc</returns>
-        /// Created By : TTUyen
+   
         public Paging<Employee> GetEmployeesByPaging(EmployeeFilter filter)
         {
             return _employeeRepository.GetEmployeesByPaging(filter);

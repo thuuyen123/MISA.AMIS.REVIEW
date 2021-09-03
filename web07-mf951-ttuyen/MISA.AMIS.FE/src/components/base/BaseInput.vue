@@ -39,7 +39,6 @@ export default {
 
       // Kiểm tra required không rỗng
       isRequiredValid: true,
-
     };
   },
   props: {
@@ -60,29 +59,45 @@ export default {
   },
   watch: {},
   methods: {
+    /**
+     * Hàm focus
+     * CreateBy: TTUyen (30/8/2021)
+     *
+     */
     onInputFocus() {
       this.focusing = true;
     },
     /**
      * Hàm lọc theo input tìm kiếm
+     * CreateBy: TTUyen (30/8/2021)
      */
     inputSearchOnEnter() {
       this.$emit("search");
     },
     /**
      * Hàm nhập input
+     * CreateBy: TTUyen (30/8/2021)
      */
     onInput(value) {
       let me = this;
       me.$emit("input", value);
       me.validateInput(value);
     },
+
+    /**
+     * Hàm xử lý dữ liệu khi blur input
+     * CreateBy: TTUyen (30/8/2021)
+     */
     onBlur(value) {
       this.focusing = false;
       let me = this;
       me.validateInput(value);
     },
 
+    /**
+     * Hàm định dạng dữ liệu
+     * CreateBy: TTUyen (30/8/2021)
+     */
     validateInput(value) {
       let me = this;
       //Kiểm tra nhập các trường bắt buộc
@@ -112,7 +127,6 @@ export default {
             ? ""
             : MESSAGE.INVALID_NUMBER.format(me.displayName);
           break;
-
       }
       if (me.isRequiredValid && me.isValid) {
         me.tooltip = "";

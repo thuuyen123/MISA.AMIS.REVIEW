@@ -36,6 +36,7 @@ namespace MISA.Infrastructor.Repository
             {
                 //Thực hiện lấy query lấy mã nhân viên mới từ csdl
                 string sqlCommand = "SELECT EmployeeCode FROM Employee ORDER BY  LENGTH(EmployeeCode) DESC, EmployeeCode DESC LIMIT 1";
+               
                 var employeeCode = _dbConnection.QueryFirstOrDefault<string>(sqlCommand);
                 return employeeCode;                                                                  
             }
@@ -53,12 +54,13 @@ namespace MISA.Infrastructor.Repository
             using (_dbConnection = new MySqlConnection(_connectionString))
             {
                 Paging<Employee> pageNew = new Paging<Employee>();
+
                 DynamicParameters parameters = new DynamicParameters();
+
                 parameters.Add("@pageIndex", filter.PageIndex);
                 parameters.Add("@pageSize", filter.PageSize);
                 parameters.Add("@keySearch", filter.KeySearch);
-
-                parameters.Add("@totalRecord", dbType: DbType.Int32, direction: ParameterDirection.Output);
+               parameters.Add("@totalRecord", dbType: DbType.Int32, direction: ParameterDirection.Output);
                 parameters.Add("@totalPage", dbType: DbType.Int32, direction: ParameterDirection.Output);
               
                 var sqlCommand = "Proc_GetEmployeesByPaging";

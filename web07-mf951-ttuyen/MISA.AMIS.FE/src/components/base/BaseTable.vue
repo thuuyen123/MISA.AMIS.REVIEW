@@ -69,6 +69,7 @@
             :id="'td' + index + '' + idx"
             :style="column.style"
             :title="formatData(record[column.fieldname], column.formattype)"
+            :class="column.subClass"
           >
             <div :class="column.position">
               <span>{{
@@ -84,11 +85,8 @@
           >
             <div class="option-feature">
               <div class="feature-text" @click="btnEditOnClick(index)">Sửa</div>
-              <button ref="myButton">
-                <div
-                  class="sprite icon-arrow-down-blue"
-                  @click="btnShowOption(index)"
-                ></div>
+              <button :ref="'myButton' + index" @click="btnShowOption(index)">
+                <div class="sprite icon-arrow-down-blue"></div>
               </button>
             </div>
           </td>
@@ -109,9 +107,10 @@
 </template>
 <script>
 import dayjs from "dayjs";
-
+// import BaseContextMenu from "../../components/base/BaseContentMenu.vue";
 export default {
   name: "BaseTable",
+
   props: {
     tableData: {
       data: {
@@ -124,49 +123,34 @@ export default {
   },
   data() {
     return {
-
-      //Chọn hết checkbox
       checkAll: false,
 
       top: 0,
     };
   },
-  components: {},
 
   methods: {
+    /**
+     * Xử lý khi click hiển thị tính năng mở rộng
+     *CreateBy: TTUyen (02/09/2021)
+     */
     btnShowOption(index) {
       console.log(this.tableData.data[index]);
-      // this.top = this.$refs.myButton[0].getBoundingClientRect().top;
-      this.$emit(
-        "show-option-click",       
-        true,
-        this.tableData.data[index],
-      );
+      console.log(this.$refs);
+      this.top = this.$refs[`myButton${index}`][0].getBoundingClientRect().top;
+      console.log(this.top);
+      this.$emit("show-option-click", this.tableData.data[index], this.top);
     },
     /**
-     * Hàm emit khi bấm sửa
+     * Hàm xử lý khi bấm sửa
+     * CreateBy: TTUyen (02/09/2021)
      */
     btnEditOnClick(index) {
       this.$emit("edit-btn-click", false, "edit", this.tableData.data[index]);
     },
-      /**
-       * Hàm emit nhân bản bản ghi
-       * CreateBy: TTUyen (30/8/2021)
-       */
-      btnCloneOnClick() {
-        this.$emit("clone-btn-click");
-      },
-
-      /**
-       * Hàm emit xóa bản ghi
-       * CreateBy TTUyen (30/8/2021)
-       */
-      btnDeleteOnClick() {
-        this.$emit("delete-btn-click");
-      },
 
     /**
-     * Hàm format date
+     * Hàm định dạng date
      * CreateBy TTUyen (30/8/2021)
      */
     formatData(str, formatType) {
@@ -190,4 +174,8 @@ export default {
 </script>
 <style scoped>
 @import "../../css/base/table.css";
+.background-color-white {
+  background-color: #fff;
+  z-index: 0 !important;
+}
 </style>

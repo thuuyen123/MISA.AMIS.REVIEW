@@ -6,19 +6,23 @@
       <div class="sprite icon-toggle-light" style="display: none"></div>
     </div>
     <div class="menu-content">
-      <router-link class="menu-item"    d-index="1" to="/inUpdating">
+      <router-link class="menu-item" d-index="1" to="/inUpdating">
         <div class="menu-item-icon sprite icon-pie-chart"></div>
         <div class="menu-item-text">Tổng quan</div>
       </router-link>
-      <router-link class="menu-item menu-money" :class="{'menu-item-active': isActive}"   to="/employee">
+      <router-link
+        class="menu-item menu-money"
+        :class="{ 'menu-item-active': isActive }"
+        to="/employee"
+      >
         <div class="menu-item-icon sprite icon-money-draw"></div>
         <div class="menu-item-text">Tiền mặt</div>
       </router-link>
-      <router-link class="menu-item"  to="/inUpdating">
+      <router-link class="menu-item" to="/inUpdating">
         <div class="menu-item-icon sprite icon-bank"></div>
         <div class="menu-item-text">Tiền gửi</div>
       </router-link>
-      <router-link class="menu-item"   to="/inUpdating">
+      <router-link class="menu-item" to="/inUpdating">
         <div class="menu-item-icon sprite icon-bag"></div>
         <div class="menu-item-text">Mua hàng</div>
       </router-link>
@@ -87,10 +91,8 @@ export default {
       },
     };
   },
-  props:{
-  },
+  props: {},
   name: "TheMenu",
- 
 };
 </script>
 <style lang="scss" scoped>

@@ -12,25 +12,25 @@ namespace MISA.ApplicationCore.Entities
         /// <summary>
         //Dữ liệu trả về
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         public object Data { get; set; }
 
         /// <summary>
         /// Thông báo trả về
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         public Object Messager { get; set; }
 
         /// <summary>
         /// Mã code trả về
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         public MISACode ErrorCode { get; set; }
 
         /// <summary>
         /// Trả về trạng thái: 1.Thành công 2. Thất bại 3. Exception
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         public RequestStatus Status { get; set; }
 
         #endregion

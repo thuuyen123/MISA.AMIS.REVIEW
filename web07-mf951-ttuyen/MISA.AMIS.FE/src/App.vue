@@ -1,6 +1,6 @@
 <template>
   <div class="amis-container">
-    <TheMenu/>
+    <TheMenu />
     <div class="content-container">
       <TheHeader />
       <div class="content-area">
@@ -11,18 +11,15 @@
 </template>
 
 <script>
-// import TheContent from './components/layout/TheContent.vue';
 import TheHeader from "./components/layout/TheHeader.vue";
 import TheMenu from "./components/layout/TheMenu.vue";
 
 export default {
   name: "App",
   components: {
-    // TheContent,
     TheHeader,
     TheMenu,
   },
-
 };
 </script>
 <style scoped>

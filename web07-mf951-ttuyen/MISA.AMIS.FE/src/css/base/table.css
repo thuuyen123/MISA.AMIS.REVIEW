@@ -1,4 +1,4 @@
-.content-table{
+.content-table {
     position: relative;
     min-width: 100%;
     border-spacing: 0px;
@@ -7,7 +7,7 @@
     /* margin: 0px 16px; */
 }
 
-table.content-table thead th{
+table.content-table thead th {
     position: sticky;
     top: 0;
     background-color: #eceef1;
@@ -19,43 +19,50 @@ table.content-table thead th{
     border-right: 1px solid #c7c7c7;
     text-align: left;
     box-sizing: border-box;
-   
 }
 
-table.content-table td, table.content-table th{
+table.content-table td, table.content-table th {
     padding: 0px 10px;
     border-bottom: 1px solid #c7c7c7;
-    border-right: 1px dotted #c7c7c7;
-    /* border-left: 1px dotted #c7c7c7; */
+    border-right: 1px dashed #c7c7c7;
     text-align: left;
     box-sizing: border-box;
+    white-space: normal;
 }
-.content-table .sticky-cell-header{
+
+.content-table .sticky-cell-header {
     /* width: 40px; */
     position: sticky !important;
     z-index: 5;
 }
-table.content-table tbody tr{
+
+table.content-table tbody tr {
     background-color: #fff;
     height: 47px;
-    
 }
-table.content-table th span{
+
+table.content-table th:nth-last-child(3), table.content-table td:nth-last-child(3) {
+    border-right: none !important;
+}
+
+table.content-table th span {
     color: #111;
     font-size: 12px;
     text-transform: uppercase!important;
     cursor: pointer;
     padding-right: 12px;
 }
+
 /* .content-table .option-header{
     border-left: 1px solid #bbbbbb;
 }
     */
-.content-table .option-header,
-.content-table .row-option{
+
+.content-table .option-header, .content-table .row-option {
     border-right: none;
 }
-.content-table .cell-empty{
+
+.content-table .cell-empty {
     padding: 0 !important;
     background-color: #fff !important;
     border: none !important;
@@ -63,7 +70,6 @@ table.content-table th span{
 
 .content-table .sticky-cell-body {
     position: sticky !important;
-    /* z-index: 4 !important; */
     background-color: #fff !important;
 }
 
@@ -75,33 +81,30 @@ table.content-table th span{
     box-sizing: border-box;
 }
 
-.sticky-cell-body.row-option .feature-text{
-    margin-right: 16px!important;
+.sticky-cell-body.row-option .feature-text {
+    margin-right: 10px!important;
     color: #0075c0;
     font-weight: bold;
     cursor: pointer;
-    padding: 2px 2px;
+    border: 1px solid transparent;
 }
-.sticky-cell-body.row-option .feature-text:hover,
-.sticky-cell-body.row-option .feature-text:active{
-    border: 1px solid #0075c0;
-}
-.sticky-cell-body.row-option button{
-    border: none;  
-    box-sizing: border-box;
-    height: 24px;
-    padding: 8px 10px 8px 10px;
-    border-radius: 3px;
-    align-items: center;
-    text-align: center;
-    background-color: #fff;
-    
-}
-.sticky-cell-body.row-option button:active,
-.sticky-cell-body.row-option button:focus{
+
+ .sticky-cell-body.row-option .feature-text:active {
     border: 1px solid #0075c0;
 }
 
+.sticky-cell-body.row-option button {
+    box-sizing: border-box;
+    height: 16px;
+    padding: 2px 7px;
+    text-align: center;
+    background-color: #fff;
+    border: 1px solid transparent;
+}
+
+.sticky-cell-body.row-option button:active, .sticky-cell-body.row-option button:focus {
+    border: 1px solid #0075c0;
+}
 
 table .option-header, table .row-option {
     /* min-width: 120px; */

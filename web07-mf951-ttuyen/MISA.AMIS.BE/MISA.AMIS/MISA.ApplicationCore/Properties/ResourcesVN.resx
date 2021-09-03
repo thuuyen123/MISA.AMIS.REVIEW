@@ -151,7 +151,7 @@
     <value>Vui lòng nhập trường bắt buộc  {0}</value>
   </data>
   <data name="ErrorUserMsgValidate" xml:space="preserve">
-    <value>Dữ liệu {0} không hợp lệ vui lòng kiểm tra lại!</value>
+    <value>Dữ liệu {0} không đúng định dạng vui lòng kiểm tra lại!</value>
   </data>
   <data name="MsgIsValid" xml:space="preserve">
     <value>Dữ liệu hợp lệ</value>

@@ -14,28 +14,28 @@ namespace MISA.ApplicationCore.Entities
         /// <summary>
         /// Khóa chính
         /// </summary>
-        /// CreateBy: TTUyen
+        ///Created By : TTUyen ( 28/08/2021)
         [DisplayName("Khóa chính")]
         public Guid DepartmentId { get; set; }
 
         /// <summary>
         /// Mã đơn vị
         /// </summary>
-        /// CreateBy: TTUyen
+        ///Created By : TTUyen ( 28/08/2021)
         [DisplayName("Mã đơn vị")]
         public string DepartmentCode { get; set; }
 
         /// <summary>
         /// Tên đơn vị
         /// </summary>
-        /// CreateBy: TTUyen
+        ///Created By : TTUyen ( 28/08/2021)
         [DisplayName("Tên đơn vị")]
         public string DepartmentName { get; set; }
 
         /// <summary>
         /// Mô tả
         /// </summary>
-        /// CreateBy: TTUyen
+        ///Created By : TTUyen ( 28/08/2021)
         [DisplayName("Mô tả")]
         public string Description { get; set; }
 

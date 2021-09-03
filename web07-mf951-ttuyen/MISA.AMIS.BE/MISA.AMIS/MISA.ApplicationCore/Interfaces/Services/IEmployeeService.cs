@@ -9,13 +9,13 @@ namespace MISA.ApplicationCore.Interfaces.Services
 {
     public interface IEmployeeService: IBaseService<Employee>
     {
- 
+
         #region METHOD
         /// <summary>
         /// Tạo mã mới
         /// </summary>
         /// <returns>Mã nhân viên mới</returns>
-        ///CreateBy: TTUyen 19/8/2021
+        ///Created By : TTUyen ( 28/08/2021)
         string GetNewEmployeeCode();
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace MISA.ApplicationCore.Interfaces.Services
         /// </summary>
         /// <param name="filter">Object chứa nội dung lọc</param>
         /// <returns>Danh sách khách hàng theo điều kiện lọc</returns>
-        /// Created By : TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         public Paging<Employee> GetEmployeesByPaging(EmployeeFilter filter);
         #endregion
 

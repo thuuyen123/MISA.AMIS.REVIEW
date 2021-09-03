@@ -14,14 +14,14 @@ namespace MISA.ApplicationCore.Entities
         /// <summary>
         /// Khóa chính
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [DisplayName("Khóa chính")]
         public Guid EmployeeId { get; set; }
 
         /// <summary>
         /// Mã nhân viên 
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [Duplicated]
         [Required]
         [MaxLength(20, "Mã nhân viên không được quá 20 ký tự")]
@@ -31,7 +31,7 @@ namespace MISA.ApplicationCore.Entities
         /// <summary>
         /// Họ và tên
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [Required]
         [DisplayName("Tên nhân viên ")]
         public string EmployeeName { get; set; }
@@ -39,7 +39,7 @@ namespace MISA.ApplicationCore.Entities
         /// <summary>
         /// Ngày sinh
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [DisplayName("Ngày sinh")]
         public DateTime? DateOfBirth { get; set; }
 
@@ -47,14 +47,14 @@ namespace MISA.ApplicationCore.Entities
         /// <summary>
         /// Giới tính
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [DisplayName("Giới tính")]
         public int? Gender { get; set; }
 
         /// <summary>
         /// Tên giới tính
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [DisplayName("Tên giới tính")]
         public string GenderName
         {
@@ -68,14 +68,18 @@ namespace MISA.ApplicationCore.Entities
                 {
                     return "Nam";
                 }
-                return "Khác";
+                else if( Gender == 2)
+                {
+                    return "Khác";
+                }
+                return "";
             }
         }
 
         /// <summary>
         /// Mã đơn vị
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [Required]
         [DisplayName("Id đơn vị")]
         public Guid DepartmentId { get; set; }
@@ -83,28 +87,28 @@ namespace MISA.ApplicationCore.Entities
         /// <summary>
         /// Tên đơn vị
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [DisplayName("Tên đơn vị")]
         public string DepartmentName { get; set; }
 
         /// <summary>
         /// Số chứng minh thư/căn cước công dân
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [DisplayName("Số chứng minh thư / Căn cước công dân của nhân viên ")]
         public string IdentityNumber { get; set; }
 
         /// <summary>
         /// Ngày cấp cmt
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [DisplayName("Ngày cấp CMND")]
         public DateTime? IdentityDate { get; set; }
 
         /// <summary>
         /// Nơi cấp 
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [DisplayName("Nơi cấp CMTND")]
         public string IdentityPlace { get; set; }
 
@@ -112,42 +116,42 @@ namespace MISA.ApplicationCore.Entities
         /// <summary>
         /// đơn vị công việc
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [DisplayName("đơn vị")]
         public string EmployeePosition { get; set; }
 
         /// <summary>
         /// Tài khoản ngân hàng
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [DisplayName("Tài khoản ngân hàng")]
         public string BankAccountNumber { get; set; }
 
         /// <summary>
         /// Tên ngân hàng
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [DisplayName("Tên ngân hàng")]
         public string BankName { get; set; }
 
         /// <summary>
         /// Chi nhánh ngân hàng
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [DisplayName("Chi nhánh ngân hàng")]
         public string BankBranchName { get; set; }
 
         /// <summary>
         /// Địa chỉ
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [DisplayName("Địa chỉ nhân viên ")]
         public string Address { get; set; }
 
         /// <summary>
         /// Email
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [FormatEmail]
         [DisplayName("Email nhân viên ")]
         public string Email { get; set; }
@@ -155,14 +159,14 @@ namespace MISA.ApplicationCore.Entities
         /// <summary>
         /// Số điện thoại di động
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [DisplayName("Sdt di động của nhân viên ")]
         public string MobilePhoneNumber { get; set; }
 
         /// <summary>
         /// Số điện thoại cố định
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [DisplayName("Sdt di động của nhân viên ")]
         public string LandlineNumber { get; set; }
 

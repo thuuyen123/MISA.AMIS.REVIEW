@@ -46,7 +46,7 @@ namespace MISA.CukCuk.Api.Controllers
         /// </summary>
         /// <param name="entity">Object</param>
         /// <returns>IActionResult</returns>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         public override IActionResult Insert(Employee entity)
         {
             try
@@ -85,10 +85,10 @@ namespace MISA.CukCuk.Api.Controllers
         /// <summary>
         /// Cập nhật nhân viên
         /// </summary>
-        /// <param name="entity"></param>
-        /// <param name="entityId"></param>
-        /// <returns></returns>
-        /// CreateBy: TTUyen
+        /// <param name="entity">Object nhân viên cần sửa</param>
+        /// <param name="entityId">Id nhân viên</param>
+        /// <returns> StatusCode</returns>
+        /// Created By : TTUyen ( 28/08/2021)
         public override IActionResult Update(Employee entity, Guid entityId)
         {
             try
@@ -128,7 +128,7 @@ namespace MISA.CukCuk.Api.Controllers
         /// Sinh mã nhân viên mới
         /// </summary>
         /// <returns>Mã nhân viên mới</returns>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [HttpGet("NewEmployeeCode")]
         public IActionResult GetNewEmployeeCode()
         {
@@ -160,7 +160,7 @@ namespace MISA.CukCuk.Api.Controllers
         /// HTTPStatusCode - 200 : có dữ liệu trả về
         /// HTTPStatusCode - 204 : không có dữ liệu
         /// <returns>Danh sách nhân viên theo điều kiện lọc</returns>
-        /// Created By : TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
 
         [HttpGet("Filter")]
         public IActionResult GetEmployeesByPaging([FromQuery] EmployeeFilter employeeFilter)
@@ -192,16 +192,20 @@ namespace MISA.CukCuk.Api.Controllers
 
         }
 
+        /// <summary>
+        /// Hàm export ra file excel danh sách nhân viên
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns>File excel</returns>
+        /// Created By : TTUyen ( 28/08/2021)
         [HttpGet("Export")]
-        public async Task<IActionResult> ExportV2(CancellationToken cancellationToken, [FromQuery] EmployeeFilter employeeFilter)
+        public async Task<IActionResult> Export(CancellationToken cancellationToken)
         {
             // query data from database  
             await Task.Yield();
 
             // gọi lên service để lấy về list employee
-            //var employees = _baseRepository.Get();
-            var paging = _employeeService.GetEmployeesByPaging(employeeFilter);
-            var employees = paging.Data;
+            var employees = _baseRepository.Get();
 
             if (employees.Any())
             {
@@ -231,7 +235,7 @@ namespace MISA.CukCuk.Api.Controllers
                     // chỉnh style cho bảng
                     workSheet.Cells[1, 1].Value = "DANH SÁCH NHÂN VIÊN";
                     workSheet.Cells["A1:J1"].Merge = true;
-                    workSheet.Cells[1, 1].Style.Font.Size = 13;
+                    workSheet.Cells[1, 1].Style.Font.Size = 16;
                     workSheet.Row(1).Style.Font.Bold = true;
                     workSheet.Row(1).Style.Font.Name = "Aria";
                     workSheet.Row(1).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;

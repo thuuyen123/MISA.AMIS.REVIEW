@@ -58,6 +58,7 @@ export default {
   methods: {
     /**
      * Đóng popup
+     * CreateBy: TTUyen (30/8/2021)
      */
     closePopup() {
       this.$emit("close");
@@ -65,13 +66,15 @@ export default {
 
     /**
      * Hủy popup
+     * CreateBy: TTUyen (30/8/2021)
      */
     cancelPopup() {
       this.$emit("cancel");
     },
 
     /**
-     * Handle bấm xác nhận
+     * Xử lý bấm xác nhận
+     * CreateBy: TTUyen (30/8/2021)
      */
     confirmPopup() {
       this.$emit("confirm");
@@ -96,6 +99,13 @@ export default {
   }
 
   #pop-2,
+  #pop-3 {
+    display: none;
+  }
+}
+
+.m-popup[type="confirm-del"] {
+
   #pop-3 {
     display: none;
   }

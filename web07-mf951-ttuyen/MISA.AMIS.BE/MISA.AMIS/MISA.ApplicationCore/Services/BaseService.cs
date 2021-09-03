@@ -29,7 +29,7 @@ namespace MISA.ApplicationCore.Services
         /// </summary>
         /// <param name="entity">Object bản ghi</param>
         /// <returns>Kết quả</returns>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         public virtual ServiceResult Add(TEntity entity)
         {
             //đánh đấu đang ở trạng thái thêm mới
@@ -63,7 +63,7 @@ namespace MISA.ApplicationCore.Services
         /// </summary>
         /// <param name="entityId">Id bản ghi</param>
         /// <returns>ServiceResulf: object kết quả</returns>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         public ServiceResult Delete(Guid entityId)
         {
             var res = _baseRepository.Delete(entityId);
@@ -76,7 +76,7 @@ namespace MISA.ApplicationCore.Services
         /// Danh sách bản ghi
         /// </summary>
         /// <returns></returns>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         public IEnumerable<TEntity> Get()
         {
             return _baseRepository.Get();
@@ -88,7 +88,7 @@ namespace MISA.ApplicationCore.Services
         /// <param name="propName">Tên thuộc tính</param>
         /// <param name="propValue">Giá trị thuộc tính</param>
         /// <returns>Bản ghi tương ứng</returns>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         public TEntity GetByProp(TEntity entity, PropertyInfo property)
         {
             return _baseRepository.GetByProp(entity, property);
@@ -99,7 +99,7 @@ namespace MISA.ApplicationCore.Services
         /// </summary>
         /// <param name="entityId">id bản ghi</param>
         /// <returns>Bản ghi tương ứng</returns>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         public TEntity GetById(Guid entityId)
         {
             return _baseRepository.GetById(entityId);
@@ -111,7 +111,7 @@ namespace MISA.ApplicationCore.Services
         /// <param name="entity">Object cập nhật</param>
         /// <param name="entityId">id</param>
         /// <returns>Kết quả ServiceResult</returns>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         public virtual ServiceResult Update(TEntity entity, Guid entityId)
         {
             entity.EntityState = EntityState.Update;
@@ -146,7 +146,7 @@ namespace MISA.ApplicationCore.Services
         /// <param name="entity"></param>
         /// <param name="formMode">Để kiểm tra xem nó là add hay update</param>
         /// <returns>True/False</returns>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         private bool ValidateData(TEntity entity)
         {
             var isValidated = true;
@@ -161,8 +161,10 @@ namespace MISA.ApplicationCore.Services
                 var propertyValue = property.GetValue(entity);
 
                 var propName = property.Name;
+            
                 //Tên đã được gắn ở đối tượng để trả về lỗi 
                 var displayName = property.GetCustomAttributes(typeof(DisplayName), true);
+         
                 //khởi tạo giá trị cho name
                 var name = string.Empty;
 
@@ -180,6 +182,7 @@ namespace MISA.ApplicationCore.Services
                         devMsg.Add(Properties.ResourcesVN.ErrorDevMsgRequire);
                         userMsg.Add(Properties.ResourcesVN.ErrorUserMsgRequire);
                         mesError.Add(string.Format(Properties.ResourcesVN.ErrorDevMsgRequire, name));
+                 
                         _serviceResult.ErrorCode = MISACode.NoValid;
                         isValidated = false;
                     }
@@ -198,6 +201,7 @@ namespace MISA.ApplicationCore.Services
                         mesError.Add(string.Format(Properties.ResourcesVN.ErrorDevMsgDuplicate, name));
                         
                         _serviceResult.ErrorCode = MISACode.NoValid;
+                        
                         isValidated = false;
                     }
                 }
@@ -261,7 +265,7 @@ namespace MISA.ApplicationCore.Services
         /// <param name="entity"></param>
         /// <param name="propName"></param>
         /// <returns></returns>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         protected virtual bool ValidateCustom(TEntity entity)
         {
             return true;

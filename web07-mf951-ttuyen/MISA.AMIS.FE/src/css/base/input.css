@@ -4,12 +4,13 @@ input {
     font-family: Notosans-Regular;
     border: none;
     outline: 0;
+    border-radius: 2px;
 }
 
-input::placeholder {
+input::-webkit-input-placeholder {
     font-size: 11px;
     color: #bbbbbb;
-    font-family: Notosans-Itali;
+    font-family: Notosans-Italic;
 }
 
 input[type="radio"]:checked:after {
@@ -76,9 +77,6 @@ input[type="radio"] {
     width: 18px;
 }
 
-/* input[type="radio"]:focus {
-    outline: 1px solid #2ca01c !important;
-} */
 
 input[type="radio"]:checked {
     border: none;
@@ -99,7 +97,7 @@ input[type="radio"]:checked {
 
 .field-input:focus-within {
     border: 1px solid #2ca01c;
-    box-shadow: 0px 0px 2px 1px #2ca01c59;
+    /* box-shadow: 0px 0px 2px 1px #2ca01c59; */
 }
 
 
@@ -108,4 +106,8 @@ input[type="radio"]:checked {
     width: 100%;
     background-color: transparent;
     flex: 1;
+}
+
+.mx-input{
+    line-height: 32px !important;
 }

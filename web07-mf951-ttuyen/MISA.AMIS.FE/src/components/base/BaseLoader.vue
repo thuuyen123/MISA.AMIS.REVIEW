@@ -1,6 +1,5 @@
 <template>
   <div :class="['model-loader']" v-if="!hideLoader">
-    <!-- {'hide-loader': hideLoader} -->
     <div class="loader">
       <div class="lds-roller">
         <div></div>
@@ -40,8 +39,7 @@ export default {
     right: 0;
     left: 0;
     bottom: 0;
-    position: fixed;
-    /* background-color: rgba(0, 0, 0, 0.4); */
+    position: absolute;
     z-index: 100;
 }
 

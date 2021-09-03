@@ -2,21 +2,7 @@
   <div class="layout-paging">
     <div class="paging-total-record">Tổng số: <strong>{{totalRecord}}</strong> bản ghi</div>
     <div class="paging-filter">
-      <input type="text" name="" id="" />
-      <!-- <div class="paging-container">
-        <button
-          class="paging-btn mr-1"
-          id="pagingPrev"
-        >
-          Trước
-        </button>
-        <button class="paging-num  pageSelected">1</button>
-        <button class="paging-num">2</button>
-        <button class="paging-num">3</button>
-        <div>...</div>
-        <button class="paging-num">10</button>
-        <button class="paging-btn ml-1" id="pagingNext">Sau</button>
-      </div> -->
+     <BaseCombobox/>
       <div class="paging-container">
         <Paginate
           :page-count="totalPages"
@@ -36,10 +22,12 @@
 </template>
 <script>
 import Paginate from "vuejs-paginate";
+import BaseCombobox from '../base/BaseCombobox.vue'
 export default {
   name: "BasePaging",
   components: {
     Paginate,
+    BaseCombobox,
   },
   props: {
     totalRecord: Number,
@@ -48,8 +36,12 @@ export default {
     totalPages: Number,
   },
   methods: {
-    clickCallback(){
-
+    /**
+     * Hàm xử lý khi thay đổi trang
+     * CreateBy: TTUyen (30/8/2021)
+     */
+    clickCallback(pageNum){
+        this.$emit("changePageIndex", pageNum);
     }
   },
 };

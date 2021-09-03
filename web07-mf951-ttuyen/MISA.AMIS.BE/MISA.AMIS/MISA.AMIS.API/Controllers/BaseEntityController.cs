@@ -25,7 +25,7 @@ namespace MISA.CukCuk.Api.Controllers
         /// </summary>
         /// <param name="baseService">base service</param>
         /// <param name="baseRepository">base repository</param>
-        /// CreateBy: TTUyen
+        ///Created By : TTUyen ( 28/08/2021)
         #region Contructor
         public BaseEntityController(IBaseService<TEntity> baseService, IBaseRepository<TEntity> baseRepository)
         {
@@ -40,7 +40,7 @@ namespace MISA.CukCuk.Api.Controllers
         /// Hiển thị danh sách 
         /// </summary>
         /// <returns>StatusCode</returns>
-        /// CreateBy: TTUyen
+        ///Created By : TTUyen ( 28/08/2021)
         [HttpGet]
         public IActionResult Get()
         {
@@ -68,10 +68,11 @@ namespace MISA.CukCuk.Api.Controllers
         }
 
         /// <summary>
-        /// API hiểnthị đối tượng theo id
+        /// API hiển thị đối tượng theo id
         /// </summary>
-        /// <param name="entityId"></param>
+        /// <param name="entityId">Khóa chính bản ghi</param>
         /// <returns>StatusCode</returns>
+        /// Created By : TTUyen ( 28/08/2021)
         [HttpGet("{entityId}")]
         public IActionResult GetById(Guid entityId)
         {
@@ -110,9 +111,9 @@ namespace MISA.CukCuk.Api.Controllers
         /// <summary>
         /// API thêm mới 1 bản ghi
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="entity">Object cần thêm</param>
         /// <returns>StatusCode</returns>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [HttpPost]
         public virtual IActionResult Insert(TEntity entity)
         {
@@ -156,9 +157,9 @@ namespace MISA.CukCuk.Api.Controllers
         /// <summary>
         /// Xóa nhân viên
         /// </summary>
-        /// <param name="entityId">id</param>
+        /// <param name="entityId">Khóa chính bản ghi cần xóa</param>
         /// <returns></returns>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [HttpDelete("{entityId}")]
         public IActionResult Delete(Guid entityId)
         {
@@ -188,7 +189,6 @@ namespace MISA.CukCuk.Api.Controllers
                     result.Status = RequestStatus.Fail;
                     return StatusCode(204, result);
                 }
-                //4. Trả về cho client
 
             }
             catch (Exception ex)
@@ -206,9 +206,9 @@ namespace MISA.CukCuk.Api.Controllers
         }
 
         /// <summary>
-        /// Sửa 
+        /// Sửa bản ghi
         /// </summary>
-        /// CreateBy: TTUyen
+        /// Created By : TTUyen ( 28/08/2021)
         [HttpPut("{entityId}")]
         public virtual IActionResult Update(TEntity entity, Guid entityId)
         {

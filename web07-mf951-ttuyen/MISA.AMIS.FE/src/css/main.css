@@ -1,3 +1,9 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
 * {
     margin: 0;
     padding: 0;
@@ -56,7 +62,7 @@ a{
     text-align: right;
 }
 .input-border-red {
-    border-color: #f65454 !important;
+    border-color: red !important;
 }
 .input-border-normal{
     border-color: #bbbbbb !important    ;

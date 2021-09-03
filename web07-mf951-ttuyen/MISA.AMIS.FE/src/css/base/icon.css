@@ -10,7 +10,7 @@
 }
 
 .icon-bell {
-    background-position: -841px -517px;
+    background-position: -788px -30px;
     width: 24px;
     height: 24px;
 }
@@ -107,12 +107,6 @@
     width: 24px;
     height: 24px;
 }
-
-/* .icon-money-bag {
-    background-position: -162px -1660px;
-    width: 24px;    
-    height: 24px;
-} */
 
 .icon-bank {
     background-position: -119px -1630px;
@@ -237,4 +231,10 @@
     background-position: -598px -463px;
     width: 36px;
     height: 36px;
+}
+
+.icon-info{
+    background-position:  -832px -462px;
+    height: 36px;
+    width: 36px;
 }

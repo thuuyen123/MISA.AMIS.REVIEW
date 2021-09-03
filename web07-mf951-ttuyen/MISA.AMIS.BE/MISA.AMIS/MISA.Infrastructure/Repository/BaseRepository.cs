@@ -187,15 +187,9 @@ namespace MISA.Infrastructor.Repository
             var parameters = new DynamicParameters();
 
             parameters.Add($"@{_tagName}Id", entityId);
-            //var 
-            //try
-            //{
+
             var res = _dbConnection.Query<TEntity>($"Proc_Get{_tagName}ById", param: parameters, commandType: CommandType.StoredProcedure).FirstOrDefault();
-            //}
-            //catch (Exception e)
-            //{
-            //    throw;
-            //}
+   
             return res;
         }
 

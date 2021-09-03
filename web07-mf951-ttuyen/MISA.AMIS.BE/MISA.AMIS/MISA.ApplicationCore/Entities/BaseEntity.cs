@@ -15,28 +15,28 @@ namespace MISA.ApplicationCore.Entities
         /// <summary>
         /// Ngày tạo
         /// </summary>
-        /// CreateBy: TTUyen
+        ///Created By : TTUyen ( 28/08/2021)
         [DisplayName("Ngày tạo")]
         public DateTime? CreatedDate { get; set; }
 
         /// <summary>
         /// Tạo bởi
         /// </summary>
-        /// CreateBy: TTUyen
+        ///Created By : TTUyen ( 28/08/2021)
         [DisplayName("Người tạo")]
         public string CreatedBy { get; set; }
 
         /// <summary>
         /// Ngày chỉnh sửa
         /// </summary>
-        /// CreateBy: TTUyen
+        ///Created By : TTUyen ( 28/08/2021)
         [DisplayName("Ngày sửa")]
         public DateTime? ModifiedDate { get; set; }
 
         /// <summary>
         /// Chỉnh sửa bởi
         /// </summary>
-        /// CreateBy: TTUyen
+        ///Created By : TTUyen ( 28/08/2021)
         [DisplayName("Người sửa")]
         public string ModifiedBy { get; set; }
 

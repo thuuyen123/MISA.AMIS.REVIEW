@@ -1,5 +1,10 @@
 <template>
-  <div class="context-menu" id="contextMenu" v-if="isShow">
+  <div
+    ref="contextMenu"
+    class="context-menu"
+    id="contextMenu"
+    :class="{ 'hide-context-menu': !isShow }"
+  >
     <div class="context-menu-title" @click="btnClone">Nhân bản</div>
     <div class="context-menu-title" @click="btnDelete">Xóa</div>
     <div class="context-menu-title">Ngưng sử dụng</div>
@@ -14,8 +19,6 @@ export default {
     isShow: {
       type: Boolean,
     },
-    positionX: String,
-    positionY: String,
   },
   data() {
     return {};
@@ -27,7 +30,7 @@ export default {
      * CreatedBy:TTUyen (30/08/2021)
      */
     btnClone() {
-      this.$emit("btnClone",false, "clone");
+      this.$emit("btnClone", false, "clone");
     },
 
     /**
@@ -37,9 +40,16 @@ export default {
     btnDelete() {
       this.$emit("btnDelete");
     },
+
   },
 };
 </script>
 <style scoped>
 @import "../../css/base/contextMenu.css";
+/* .context-menu{
+  display: none ;
+} */
+.hide-context-menu {
+  display: none !important;
+}
 </style>

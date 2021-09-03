@@ -160,7 +160,7 @@ namespace MISA.ApplicationCore.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dữ liệu {0} không hợp lệ vui lòng kiểm tra lại!.
+        ///   Looks up a localized string similar to Dữ liệu {0} không đúng định dạng vui lòng kiểm tra lại!.
         /// </summary>
         public static string ErrorUserMsgValidate {
             get {
