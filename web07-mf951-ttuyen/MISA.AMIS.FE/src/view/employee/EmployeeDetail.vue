@@ -87,7 +87,7 @@
                 :value-type="'YYYY-MM-DD'"
                 placeholder="DD/MM/YYYY"
                 :disabled-date="(date) => date >= new Date()"
-                style="width: 100%; outline-color: #2ca01c"
+                style="width: 100%; outline: #2ca01c 1px"
                 tabindex="3"
               >
                 <BaseInput
@@ -114,10 +114,7 @@
                   />
                 </div>
                 <label :for="1">Nam</label>
-                <div
-                  tabindex="5"
-                  style="outline-color: #2ca01c; border-radius: 50%"
-                >
+                <div tabindex="5" style="outline-color: #2ca01c">
                   <input
                     v-model="employeeDetail.Gender"
                     type="radio"
@@ -127,7 +124,7 @@
                   />
                 </div>
                 <label :for="0">Nữ</label>
-                <div tabindex="6" style="outline-color: #2ca01c">
+                <div tabindex="6"  style="outline-color: #2ca01c">
                   <input
                     v-model="employeeDetail.Gender"
                     type="radio"
@@ -145,7 +142,6 @@
                 id="txtIdentityNumber"
                 type="text"
                 displayName="Số CMND"
-                fieldType="number"
                 value=""
                 placeholder=""
                 v-model="employeeDetail.IdentityNumber"
@@ -159,8 +155,8 @@
                 :value-type="'YYYY-MM-DD'"
                 placeholder="DD/MM/YYYY"
                 :disabled-date="(date) => date >= new Date()"
-                style="width: 100%; outline-color: #2ca01c"
-                tabindex="9"
+                style="width: 100%; outline: #2ca01c 1px"
+                :tabindex="9"
               >
                 <BaseInput
                   ref="inputIdentityDate"
@@ -169,7 +165,7 @@
                   displayName="Ngày cấp"
                   value=""
                   v-model="employeeDetail.IdentityDate"
-                  style="width: 100%; outline-color: #2ca01c"
+                  style="width: 100%; outline: #2ca01c 1px"
                 />
               </DatePicker>
             </BaseLabel>
@@ -205,7 +201,6 @@
                 ref="inputMobilePhoneNumber"
                 id="txtMobilePhoneNumber"
                 type="text"
-                fieldType="number"
                 displayName="ĐT di động"
                 value=""
                 placeholder=""
@@ -358,7 +353,8 @@ import BaseButton from "../../components/base/BaseButton.vue";
 import BasePopup from "../../components/base/BasePopup.vue";
 import BaseDropdownDepartment from "../../components/base/BaseDropdownDepartment.vue";
 import { CommonFn } from "../../js/common/common";
-import { MESSAGE } from "../../js/common/const";
+import { MESSAGE, CONFIG } from "../../js/common/const";
+import {FORM_STATE, STATUS_CODE} from '../../js/common/enums'
 import axios from "axios";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
@@ -421,9 +417,6 @@ export default {
         BankBranchName: "",
       },
 
-      //url của API
-      myUrl: "https://localhost:44331/api/v1/",
-
       //Các input không hợp lệ
       invalidRef: [],
     };
@@ -444,13 +437,13 @@ export default {
         }
         this.resetInput();
         switch (value.formMode) {
-          case "add":
+          case FORM_STATE.ADD:
             await this.addForm();
             break;
-          case "edit":
+          case FORM_STATE.EDIT:
             await this.editForm();
             break;
-          case "clone":
+          case FORM_STATE.CLONE:
             await this.cloneForm();
             break;
           default:
@@ -493,9 +486,8 @@ export default {
      *  CreateBy: TTUyen(01/09/2021)
      */
     async getNewCode() {
-      let me = this;
       try {
-        let res = await axios.get(me.myUrl + "Employees/NewEmployeeCode");
+        let res = await axios.get(CONFIG.MY_URL + "Employees/NewEmployeeCode");
         return res;
       } catch (e) {
         this.$toast.error(MESSAGE.EXCEPTION_MSG, {
@@ -557,18 +549,22 @@ export default {
 
     /**
      * Hàm thực hiện lưu dữ liệu vào database
-     *  CreateBy: TTUyen(01/09/2021)
+     * CreateBy: TTUyen(01/09/2021)
      */
     async sendDetails() {
       let employee = this.employeeDetail;
       console.log(this.employeeDetail);
       try {
         switch (this.status.formMode) {
-          case "add":
+          case FORM_STATE.ADD:
+            this.employeeDetail.EmployeeId = "126a9642-609b-5827-5199-04b3a3d51ef2";
+            this.employeeDetail.EntityState=1;
+            this.employeeDetail.CreatedDate= null;
+            this.employeeDetail.ModifiedDate= null;
             await axios
-              .post(this.myUrl + "Employees", employee)
+              .post(CONFIG.MY_URL + "Employees", employee)
               .then((res) => {
-                if (res.status != 204) {
+                if (res.status != STATUS_CODE.NO_CONTENT) {
                   this.$toast.success(MESSAGE.ADD_MSG_SUCCESS, {
                     position: "bottom-right",
                     timeout: 2000,
@@ -582,12 +578,12 @@ export default {
                 this.showPopupWarningServer(msgError);
               });
             break;
-          case "clone":
+          case FORM_STATE.CLONE:
             await axios
-              .post(this.myUrl + "Employees", employee)
+              .post(CONFIG.MY_URL + "Employees", employee)
               .then((res) => {
                 console.log(res.data);
-                if (res.status != 204) {
+                if (res.status != STATUS_CODE.NO_CONTENT) {
                   this.$toast.success(MESSAGE.CLONE_MSG_SUCCESS, {
                     position: "bottom-right",
                     timeout: 2000,
@@ -599,15 +595,15 @@ export default {
                 this.showPopupWarningServer(res.response.data.Data.userMsg[0]);
               });
             break;
-          case "edit":
+          case FORM_STATE.EDIT:
             await axios
               .put(
-                this.myUrl + "Employees/" + this.employeeDetail.EmployeeId,
+                CONFIG.MY_URL + "Employees/" + this.employeeDetail.EmployeeId,
                 this.employeeDetail
               )
               .then((res) => {
                 console.log(res.data);
-                if (res.status == 200) {
+                if (res.status == STATUS_CODE.SUCCESS) {
                   this.$toast.success(MESSAGE.EDIT_MSG_SUCCESS, {
                     position: "bottom-right",
                     timeout: 2000,
@@ -616,13 +612,15 @@ export default {
                 }
               })
               .catch((res) => {
-                this.showPopupWarningServer(res.response.data.Data.userMsg[0]);
+                this.showPopupWarningServer(res.response.data.Data.userMsg);
               });
             break;
           default:
             break;
         }
+         console.log(this.employeeDetail);
       } catch (err) {
+        console.log(err);
         this.$toast.error(MESSAGE.EXCEPTION_MSG, {
           position: "bottom-right",
           timeout: 2000,
@@ -718,7 +716,7 @@ export default {
       if ((await this.btnSaveForm()) == false) {
         this.btnSaveForm();
       } else {
-        this.$emit("changeState", false, "add");
+        this.$emit("changeState", false, FORM_STATE.ADD);
       }
     },
     /**

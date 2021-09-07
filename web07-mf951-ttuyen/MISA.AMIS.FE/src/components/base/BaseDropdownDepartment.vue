@@ -17,8 +17,6 @@
       @click="toggleItems"
       :value="currentId"
       :tabindex="tabindex"
-      @input="onInput($event.target.value)"
-      @blur="onBlur($event.target.value)"
       v-bind="$attrs"
     >
       <input

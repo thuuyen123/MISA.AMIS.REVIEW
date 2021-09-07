@@ -12,7 +12,9 @@
 </template>
 
 <script>
+import {FORM_STATE} from '../../js/common/enums'
 export default {
+
   directives: {},
   name: "BaseContextMenu",
   props: {
@@ -30,7 +32,7 @@ export default {
      * CreatedBy:TTUyen (30/08/2021)
      */
     btnClone() {
-      this.$emit("btnClone", false, "clone");
+      this.$emit("btnClone", false, FORM_STATE.CLONE);
     },
 
     /**

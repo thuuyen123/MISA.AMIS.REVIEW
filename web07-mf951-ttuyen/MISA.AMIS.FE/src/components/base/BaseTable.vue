@@ -107,6 +107,7 @@
 </template>
 <script>
 import dayjs from "dayjs";
+import {FORM_STATE} from '../../js/common/enums'
 // import BaseContextMenu from "../../components/base/BaseContentMenu.vue";
 export default {
   name: "BaseTable",
@@ -146,7 +147,7 @@ export default {
      * CreateBy: TTUyen (02/09/2021)
      */
     btnEditOnClick(index) {
-      this.$emit("edit-btn-click", false, "edit", this.tableData.data[index]);
+      this.$emit("edit-btn-click", false, FORM_STATE.EDIT, this.tableData.data[index]);
     },
 
     /**

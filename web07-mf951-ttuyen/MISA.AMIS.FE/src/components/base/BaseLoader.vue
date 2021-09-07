@@ -1,16 +1,7 @@
 <template>
-  <div :class="['model-loader']" v-if="!hideLoader">
+  <div class="model-loader" v-if="!hideLoader">
     <div class="loader">
-      <div class="lds-roller">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      <img src="../../assets/img/loading.svg" alt="">
     </div>
   </div>
 </template>
@@ -34,13 +25,4 @@ export default {
 
 <style scoped>
 @import "../../css/base/loader.css";
-.model-loader {
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    position: absolute;
-    z-index: 100;
-}
-
 </style>

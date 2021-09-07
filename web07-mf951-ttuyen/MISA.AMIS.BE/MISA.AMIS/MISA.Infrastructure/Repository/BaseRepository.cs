@@ -261,7 +261,7 @@ namespace MISA.Infrastructor.Repository
         }
 
         /// <summary>
-        /// Dong ket noi
+        /// Đóng kết nối
         /// </summary>
         ///  CreateBy: TTUyen
         public void Dispose()

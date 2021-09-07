@@ -84,6 +84,7 @@ import BasePopup from "../../components/base/BasePopup.vue";
 import BaseContextMenu from "../../components/base/BaseContentMenu.vue";
 import { eventBus } from "../../main.js";
 import { MESSAGE, CONFIG } from "../../js/common/const";
+import {FORM_STATE, STATUS_CODE, EMPLOYEE_TEXT} from '../../js/common/enums'
 export default {
   // directives: {
   //   onClickaway: onClickaway,
@@ -124,7 +125,7 @@ export default {
 
       recordStatus: {
         isHide: true,
-        formMode: "add",
+        formMode: FORM_STATE.ADD,
         data: [],
       },
 
@@ -169,9 +170,10 @@ export default {
           },
           {
             id: "EmployeePositionHead",
-            style: "min-width: 150px",
+            style: "min-width: 150px; max-width:150px;",
             fieldname: "EmployeePosition",
             title: "Chức danh",
+            position: "text-overflow-ellipsis",
           },
           {
             id: "DepartmentNameHead",
@@ -265,7 +267,7 @@ export default {
       setTimeout(() => {
         var employeeCode = this.cloneData.EmployeeCode;
         this.contentTextDel = MESSAGE.DELETE_EMPLOYEE.format(
-          "Nhân viên",
+          EMPLOYEE_TEXT.DISPLAY_NAME,
           employeeCode
         );
       }, 150);
@@ -346,7 +348,7 @@ export default {
      * Hiển thị form dialog thông qua context menu
      * CreateBy: TTUyen(02/09/2021)
      */
-    async btnShowDialogClone(isHide, formMode = "add") {
+    async btnShowDialogClone(isHide, formMode = FORM_STATE.ADD) {
       this.recordStatus = {
         isHide: isHide,
         formMode: formMode,
@@ -360,8 +362,7 @@ export default {
      * Hiển thị form dialog
      * CreateBy: TTUyen(02/09/2021)
      */
-    async changeStatusForm(isHide, formMode = "add", data = []) {
-      console.log(isHide);
+    async changeStatusForm(isHide, formMode = FORM_STATE.ADD, data = []) {
       this.recordStatus.isHide = false;
 
       setTimeout(() => {
@@ -417,7 +418,6 @@ export default {
       this.totalRecord = 0;
       this.pageIndex = 1;
       this.pageSize = 10;
-      this.totalPages = 1;
       this.loadData();
       this.$toast.success(MESSAGE.RELOAD_SUCCESS, {
         position: "bottom-right",
@@ -444,7 +444,7 @@ export default {
               me.pageIndex
           )
           .then((res) => {
-            if (res.status != 204) {
+            if (res.status != STATUS_CODE.NO_CONTENT) {
               me.table.data = res.data.Data;
               me.totalPages = res.data.TotalPage;
               me.totalRecord = res.data.TotalRecord;
@@ -481,7 +481,7 @@ export default {
         await axios
           .get(`${CONFIG.MY_URL}Employees/Export`, { responseType: "blob" })
           .then((res) => {
-            if (res.status != 204) {
+            if (res.status != STATUS_CODE.NO_CONTENT) {
               const url = window.URL.createObjectURL(new Blob([res.data]));
               const a = document.createElement("a");
               a.href = url;
@@ -498,7 +498,7 @@ export default {
             }
           })
           .catch(() => {
-            this.$toast.info(MESSAGE.EXCEPTION_MSG, {
+            this.$toast.error(MESSAGE.EXCEPTION_MSG, {
               position: "bottom-right",
               timeout: 2000,
             });
@@ -511,11 +511,11 @@ export default {
 
     /**
      * Tải lại dữ liệu
+     * CreateBy: TTUyen (29/08/2021)
      */
     reloadData() {
       this.loadData();
     },
-    // btnCloneOnClick() {},
   },
 };
 </script>

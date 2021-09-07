@@ -121,12 +121,6 @@ export default {
           me.isValid = CommonFn.isEmail(value);
           me.tooltip = me.isValid ? "" : MESSAGE.INVALID_EMAIL;
           break;
-        case "number":
-          me.isValid = CommonFn.checkNumberOnly(value);
-          me.tooltip = me.isValid
-            ? ""
-            : MESSAGE.INVALID_NUMBER.format(me.displayName);
-          break;
       }
       if (me.isRequiredValid && me.isValid) {
         me.tooltip = "";

@@ -1,9 +1,18 @@
-// Chứa my url gọi API
+
+/**
+ * Chứa my url gọi API
+ * CreateBy: TTUyen (04/09/2021)
+ */
 export const CONFIG = {
     MY_URL : "https://localhost:44331/api/v1/",
 }
 
-//Thông điệp của popup
+
+
+/**
+ * Thông điệp của popup
+ * CreateBy: TTUyen (04/09/2021)
+ */
 export const MESSAGE = {
 
     FORM_CHANGED: "Dữ liệu đã bị thay đổi. Bạn có muốn cất không?",
@@ -22,13 +31,10 @@ export const MESSAGE = {
 
     INVALID_NUMBER: "{0} chỉ được phép chứa số",
 
-    //Thêm nhân viên thành công
     ADD_MSG_SUCCESS: "Thêm nhân viên thành công!",
 
-    //Sửa thông tin thành công
     EDIT_MSG_SUCCESS: "Sửa thông tin thành công!",
 
-    //Xóa nhân viên thành công
     DELETE_MSG_SUCCESS: "Xóa bản ghi thành công!",
 
     CLONE_MSG_SUCCESS: "Nhân bản thành công",

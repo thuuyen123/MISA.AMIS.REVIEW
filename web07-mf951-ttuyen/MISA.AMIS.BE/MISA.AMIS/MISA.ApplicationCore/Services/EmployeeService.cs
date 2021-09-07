@@ -85,10 +85,12 @@ namespace MISA.ApplicationCore.Services
             {
                 var msgError = new
                 {
-                    devMsg = string.Format(Properties.ResourcesVN.ErrorDevMsgValidate, "mã nhân viên"),
-                    userMs = string.Format(Properties.ResourcesVN.ErrorUserMsgValidate, "mã nhân viên"),
+
+                    devMsg = string.Format(Properties.ResourcesVN.ErrorDevMsgValidate, ($"<{entity.GetType().GetProperty("EmployeeCode").GetValue(entity)}>")),
+                    userMsg = string.Format(Properties.ResourcesVN.ErrorUserMsgValidate, ($"<{entity.GetType().GetProperty("EmployeeCode").GetValue(entity)}>")),
+                    dataError = "EmployeeCode",
                 };
-                _serviceResult.Messager = string.Format(Properties.ResourcesVN.ErrorDevMsgValidate, "mã nhân viên");
+                _serviceResult.Messager = string.Format(Properties.ResourcesVN.ErrorDevMsgValidate, "Mã Nhân viên");
                 _serviceResult.Data = msgError;
                 _serviceResult.ErrorCode = MISACode.NoValid;
                 return _serviceResult;

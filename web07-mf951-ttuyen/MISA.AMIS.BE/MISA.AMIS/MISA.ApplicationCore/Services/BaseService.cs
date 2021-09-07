@@ -32,12 +32,12 @@ namespace MISA.ApplicationCore.Services
         /// Created By : TTUyen ( 28/08/2021)
         public virtual ServiceResult Add(TEntity entity)
         {
-            //đánh đấu đang ở trạng thái thêm mới
+            //Đánh đấu đang ở trạng thái thêm mới
             entity.EntityState = EntityState.AddNew;
             var isValid = ValidateData(entity);
             if (isValid == true)
             {
-                //số bản ghi thêm thành công
+                //Số bản ghi thêm thành công
                 var rowEffect = _baseRepository.Add(entity);
                 if (rowEffect > 0)
                 {
